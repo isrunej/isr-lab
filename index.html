@@ -1,0 +1,388 @@
+---
+layout: default
+---
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-tag">{{ site.lab.university }} · {{ site.lab.department }}</p>
+    <h1 class="hero-title">Intelligent<br>Systems &<br><em>Robotics</em> Lab</h1>
+    <p class="hero-sub">Advancing automation, perception, and control intelligence for agro-industrial applications — from field robots to smart instrumentation systems.</p>
+    <div class="hero-btns">
+      <a href="#research" class="btn btn-primary">Explore Research</a>
+      <a href="#doctoral" class="btn btn-ghost">S3 Program →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <p class="hero-right-label">Lab Overview</p>
+    <h2 class="hero-right-title">Where Control Theory Meets Intelligent Machines</h2>
+    <p class="hero-right-text">The ISR Lab is a research unit within the Department of Electrical Engineering at UNEJ, focusing on the intersection of control systems, machine intelligence, and robotics — with a strong emphasis on real-world agro-industrial deployment.</p>
+    <div class="hero-stat-grid">
+      <div class="hero-stat">
+        <div class="hero-stat-num">8+</div>
+        <div class="hero-stat-label">Active Researchers</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">15+</div>
+        <div class="hero-stat-label">Publications</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">5</div>
+        <div class="hero-stat-label">Research Themes</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">S3</div>
+        <div class="hero-stat-label">Doctoral Program</div>
+      </div>
+    </div>
+    <div class="affiliation-strip">
+      <div class="affil-dot"></div>
+      <p class="affil-text"><strong>{{ site.lab.department }}</strong><br>{{ site.lab.university }} · Jember, East Java</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- ─── LATEST NEWS ─── -->
+<section id="news-preview" style="background: white;">
+  <div class="container">
+    <div class="section-header fade-in" style="display:flex; justify-content:space-between; align-items:flex-end;">
+      <div>
+        <p class="section-tag">Latest News</p>
+        <h2 class="section-title">Weekly Updates</h2>
+      </div>
+      <a href="{{ '/news/' | relative_url }}" class="btn btn-outline">All News →</a>
+    </div>
+    <div class="news-grid fade-in">
+      {% for post in site.posts limit:3 %}
+      <div class="news-card">
+        <div class="news-card-img">{{ post.emoji | default: "📰" }}</div>
+        <div class="news-card-body">
+          <p class="news-cat">{{ post.category | default: "News" }}</p>
+          <h3 class="news-card-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <p class="news-card-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+          <div class="news-meta">
+            <span class="news-date">{{ post.date | date: "%d %b %Y" }}</span>
+            <a href="{{ post.url | relative_url }}" class="news-read">READ MORE →</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- ─── RESEARCH ─── -->
+<section id="research">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-tag">Research Areas</p>
+      <h2 class="section-title">Five Core Pillars of<br>Inquiry & Innovation</h2>
+      <p class="section-lead">Our research agenda spans foundational theory to applied systems, targeting challenges in agro-industrial automation and intelligent control.</p>
+    </div>
+    <div class="research-grid fade-in">
+      <div class="research-card">
+        <p class="rc-number">01</p>
+        <div class="rc-icon">🤖</div>
+        <h3 class="rc-title">Agro-Industrial Robotics</h3>
+        <p class="rc-desc">Design, kinematics, dan kontrol sistem robotik untuk pertanian — robot harvesting, sorting, dan precision spraying untuk tanaman Indonesia.</p>
+        <div class="rc-tags"><span class="tag">Kinematics</span><span class="tag">Path Planning</span><span class="tag">Manipulation</span></div>
+      </div>
+      <div class="research-card">
+        <p class="rc-number">02</p>
+        <div class="rc-icon">🧠</div>
+        <h3 class="rc-title">Intelligent Control Systems</h3>
+        <p class="rc-desc">Desain kendali berbasis AI meliputi fuzzy logic, neural network controllers, dan adaptive systems untuk dinamika plant nonlinear.</p>
+        <div class="rc-tags"><span class="tag">Fuzzy PID</span><span class="tag">Adaptive Control</span><span class="tag">RL</span></div>
+      </div>
+      <div class="research-card">
+        <p class="rc-number">03</p>
+        <div class="rc-icon">👁️</div>
+        <h3 class="rc-title">Machine Perception</h3>
+        <p class="rc-desc">Computer vision dan sensor fusion untuk monitoring pertanian real-time — deteksi penyakit, estimasi yield, dan navigasi lapangan.</p>
+        <div class="rc-tags"><span class="tag">Deep Learning</span><span class="tag">Sensor Fusion</span><span class="tag">Edge AI</span></div>
+      </div>
+      <div class="research-card">
+        <p class="rc-number">04</p>
+        <div class="rc-icon">📡</div>
+        <h3 class="rc-title">Smart Instrumentation</h3>
+        <p class="rc-desc">Jaringan sensor IoT dan sistem pengukuran untuk monitoring lingkungan dan akuisisi data precision agriculture.</p>
+        <div class="rc-tags"><span class="tag">IoT</span><span class="tag">MEMS</span><span class="tag">Signal Processing</span></div>
+      </div>
+      <div class="research-card">
+        <p class="rc-number">05</p>
+        <div class="rc-icon">🔬</div>
+        <h3 class="rc-title">Efficient Deep Learning</h3>
+        <p class="rc-desc">Kompresi model, sparse networks, dan few-shot learning untuk deployment AI hemat sumber daya pada robotika pertanian.</p>
+        <div class="rc-tags"><span class="tag">Pruning / LTH</span><span class="tag">Few-Shot</span><span class="tag">Meta-Learning</span></div>
+      </div>
+      <div class="research-card">
+        <p class="rc-number">06</p>
+        <div class="rc-icon">🌾</div>
+        <h3 class="rc-title">Digital Agriculture Systems</h3>
+        <p class="rc-desc">Sistem terintegrasi end-to-end yang menggabungkan robotika, AI, dan IoT untuk solusi smart farming skala agro-industri Indonesia.</p>
+        <div class="rc-tags"><span class="tag">Digital Twin</span><span class="tag">SCADA</span><span class="tag">DSS</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- ─── ROADMAP ─── -->
+<section id="roadmap" class="roadmap-bg">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-tag">Lab Roadmap</p>
+      <h2 class="section-title">Strategic Development<br>2022 — 2030</h2>
+      <p class="section-lead">Rencana pengembangan lab secara bertahap — dari infrastruktur riset dasar menuju pusat unggulan sistem cerdas nasional.</p>
+    </div>
+    <div class="roadmap-timeline fade-in">
+      <div class="rm-phase">
+        <div class="rm-phase-head"><span class="rm-year">2022 – 2023</span><span class="rm-badge done">Completed</span></div>
+        <h3 class="rm-phase-title">Phase 1 — Foundation & Infrastructure</h3>
+        <p class="rm-phase-desc">Membangun identitas lab, pengadaan peralatan inti, dan membangun kompetensi riset awal dalam robotika dan sistem kendali.</p>
+        <div class="rm-milestones">
+          <span class="rm-milestone">Lab facility setup</span>
+          <span class="rm-milestone">Robot prototype pertama</span>
+          <span class="rm-milestone">Publikasi awal (S1/S2)</span>
+          <span class="rm-milestone">Pendanaan riset internal</span>
+        </div>
+      </div>
+      <div class="rm-phase active">
+        <div class="rm-phase-head"><span class="rm-year">2024 – 2025</span><span class="rm-badge ongoing">Ongoing</span></div>
+        <h3 class="rm-phase-title">Phase 2 — Research Expansion & S3 Launch</h3>
+        <p class="rm-phase-desc">Meningkatkan output publikasi, meluncurkan program doktoral, dan membangun kolaborasi strategis nasional & internasional.</p>
+        <div class="rm-milestones">
+          <span class="rm-milestone">S3 Program launch</span>
+          <span class="rm-milestone">Target Sinta 1-2</span>
+          <span class="rm-milestone">Kolaborasi industri (MoU)</span>
+          <span class="rm-milestone">Hibah kompetitif</span>
+        </div>
+      </div>
+      <div class="rm-phase">
+        <div class="rm-phase-head"><span class="rm-year">2026 – 2027</span><span class="rm-badge planned">Planned</span></div>
+        <h3 class="rm-phase-title">Phase 3 — Scale & International Visibility</h3>
+        <p class="rm-phase-desc">Kehadiran di konferensi internasional, perluasan kohort doktoral, dan menjadikan lab sebagai referensi nasional agro-robotics.</p>
+        <div class="rm-milestones">
+          <span class="rm-milestone">IEEE/Scopus publications</span>
+          <span class="rm-milestone">Student exchange internasional</span>
+          <span class="rm-milestone">Flagship robot demonstrator</span>
+          <span class="rm-milestone">RISET-PRO / WCP grant</span>
+        </div>
+      </div>
+      <div class="rm-phase">
+        <div class="rm-phase-head"><span class="rm-year">2028 – 2030</span><span class="rm-badge planned">Planned</span></div>
+        <h3 class="rm-phase-title">Phase 4 — Center of Excellence (PUI)</h3>
+        <p class="rm-phase-desc">Diakui sebagai Pusat Unggulan Iptek (PUI) sistem agro-industri cerdas, dengan teknologi lapangan yang dapat diterapkan dan spin-off komersial.</p>
+        <div class="rm-milestones">
+          <span class="rm-milestone">Status PUI</span>
+          <span class="rm-milestone">Inkubasi spin-off/startup</span>
+          <span class="rm-milestone">Sistem lapangan terdeployment</span>
+          <span class="rm-milestone">Target H-Index milestone</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PUBLICATIONS ─── -->
+<section id="publications">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-tag">Publications</p>
+      <h2 class="section-title">Research Output</h2>
+      <p class="section-lead">Kontribusi peer-reviewed dari anggota ISR Lab di jurnal dan konferensi bidang sistem kendali, robotika, dan sistem cerdas.</p>
+    </div>
+    <div class="pub-filter fade-in">
+      <button class="pub-btn active">All</button>
+      <button class="pub-btn">Journals</button>
+      <button class="pub-btn">Conferences</button>
+      <button class="pub-btn">2025</button>
+      <button class="pub-btn">2024</button>
+    </div>
+    <div class="pub-list fade-in">
+      <!-- TAMBAHKAN PUBLIKASI ANDA DI SINI -->
+      <div class="pub-item">
+        <span class="pub-year">2025</span>
+        <div>
+          <p class="pub-title">Judul Publikasi Terbaru Anda</p>
+          <p class="pub-authors">Nama Anda, et al. — ISR Lab, UNEJ</p>
+          <p class="pub-venue">Nama Jurnal / Konferensi · Indexing</p>
+        </div>
+        <div class="pub-links">
+          <a href="#" class="pub-link doi">DOI</a>
+          <a href="#" class="pub-link">PDF</a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <span class="pub-year">2024</span>
+        <div>
+          <p class="pub-title">Adaptive Fuzzy-PID Control for 3-DOF Agro-Industrial Robot Arm</p>
+          <p class="pub-authors">Khairul, et al. — ISR Lab, Universitas Jember</p>
+          <p class="pub-venue">International Journal of Advanced Robotic Systems · Scopus Q2</p>
+        </div>
+        <div class="pub-links">
+          <a href="#" class="pub-link doi">DOI</a>
+          <a href="#" class="pub-link">PDF</a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="{{ site.lab.scholar }}" target="_blank" class="btn btn-primary">View All on Google Scholar →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- ─── TEAM ─── -->
+<section id="team" style="background: white;">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-tag">The Team</p>
+      <h2 class="section-title">Faculty & Researchers</h2>
+      <p class="section-lead">Tim peneliti yang menjembatani teori teknik elektro dan praktek sistem cerdas.</p>
+    </div>
+    <div class="team-grid fade-in">
+      <div class="team-card team-pi">
+        <div class="team-avatar">K</div>
+        <h3 class="team-name">{{ site.lab.pi_name }}</h3>
+        <p class="team-role">Principal Investigator · Lektor Kepala</p>
+        <p class="team-focus">Intelligent Control · Agro-Robotics · Instrumentation</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">D</div>
+        <h3 class="team-name">Dosen Peneliti A</h3>
+        <p class="team-role">Co-Investigator</p>
+        <p class="team-focus">Machine Vision · Deep Learning</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">D</div>
+        <h3 class="team-name">Dosen Peneliti B</h3>
+        <p class="team-role">Co-Investigator</p>
+        <p class="team-focus">IoT · Smart Sensing · Embedded Systems</p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">+</div>
+        <h3 class="team-name">Join Our Lab</h3>
+        <p class="team-role">S3 Candidate · Research Staff</p>
+        <p class="team-focus">Kami menerima peneliti yang termotivasi. <a href="#contact" style="color:var(--teal)">Hubungi kami →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DOCTORAL ─── -->
+<section id="doctoral" class="doctoral-bg">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-tag">Doctoral Program / S3</p>
+      <h2 class="section-title">Research Opportunities<br>at PhD Level</h2>
+      <p class="section-lead">ISR Lab mendukung lingkungan riset doktoral dalam sistem cerdas, robotika, dan kendali — selaras dengan Program S3 Teknik Elektro UNEJ.</p>
+    </div>
+    <div class="doctoral-grid fade-in">
+      <div class="doctoral-card">
+        <div class="dc-icon">🎓</div>
+        <h3 class="dc-title">Supervised Research</h3>
+        <p class="dc-desc">Kandidat doktoral mendapat bimbingan intensif dari dosen dengan rekam jejak publikasi aktif dan proyek terhubung dengan industri.</p>
+      </div>
+      <div class="doctoral-card">
+        <div class="dc-icon">🔬</div>
+        <h3 class="dc-title">Lab Resources</h3>
+        <p class="dc-desc">Akses ke hardware robot, FPGA, GPU computing, array sensor, dan lingkungan pengembangan software kolaboratif.</p>
+      </div>
+      <div class="doctoral-card">
+        <div class="dc-icon">🌏</div>
+        <h3 class="dc-title">International Exposure</h3>
+        <p class="dc-desc">Dukungan publikasi Scopus, kehadiran di IEEE dan konferensi internasional, serta kolaborasi dengan universitas mitra.</p>
+      </div>
+      <div class="doctoral-card">
+        <div class="dc-icon">🌾</div>
+        <h3 class="dc-title">Industry Impact</h3>
+        <p class="dc-desc">Riset berbasis tantangan agro-industri nyata — dari pengolahan tembakau dan kopi hingga otomasi sawah di Jawa Timur.</p>
+      </div>
+    </div>
+    <div class="doctoral-topics fade-in">
+      <p class="dt-title">Open Research Topics for S3</p>
+      <ul class="dt-list">
+        <li>Efficient Deep Learning for Edge-Agricultural Robotics</li>
+        <li>Sparse Neural Networks via Lottery Ticket Hypothesis</li>
+        <li>Few-Shot Learning for Crop Disease Classification</li>
+        <li>Meta-Learning Controllers for Adaptive Robot Arms</li>
+        <li>Multi-Modal Sensor Fusion in Precision Agriculture</li>
+        <li>Continual Learning for Dynamic Agro-Environments</li>
+        <li>Digital Twin for Agro-Industrial Control Systems</li>
+        <li>Human-Robot Collaboration in Agricultural Tasks</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header fade-in">
+      <p class="section-tag">Contact</p>
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-lead">Untuk calon mahasiswa S3, kolaborator, atau mitra industri — kami terbuka untuk berdiskusi.</p>
+    </div>
+    <div class="contact-grid fade-in">
+      <div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <p class="contact-label">Location</p>
+            <p class="contact-value">{{ site.lab.department }}, UNEJ<br>{{ site.lab.address }}</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <p class="contact-label">Personal Blog</p>
+            <p class="contact-value"><a href="{{ site.lab.pi_blog }}" target="_blank">{{ site.lab.pi_blog }}</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <p class="contact-label">Email</p>
+            <p class="contact-value"><a href="mailto:{{ site.lab.email }}">{{ site.lab.email }}</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🎓</div>
+          <div>
+            <p class="contact-label">Google Scholar</p>
+            <p class="contact-value"><a href="{{ site.lab.scholar }}" target="_blank">View Publication Profile →</a></p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- Ganti action dengan Google Forms atau Formspree URL Anda -->
+        <form action="https://formspree.io/f/YOUR_ID" method="POST">
+          <div class="form-group">
+            <label class="form-label">Nama Lengkap</label>
+            <input type="text" name="name" class="form-input" placeholder="Nama Anda" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-input" placeholder="email@anda.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Topik</label>
+            <input type="text" name="subject" class="form-input" placeholder="mis. Pendaftaran S3, Kolaborasi, Umum">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Pesan</label>
+            <textarea name="message" class="form-textarea" placeholder="Ceritakan minat riset atau pertanyaan Anda..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Kirim Pesan →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
