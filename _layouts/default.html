@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  {% seo %}
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="{{ '/' | relative_url }}" class="nav-logo">ISR·LAB / UNEJ</a>
+  <ul class="nav-links">
+    <li><a href="{{ '/#research' | relative_url }}">Research</a></li>
+    <li><a href="{{ '/#roadmap' | relative_url }}">Roadmap</a></li>
+    <li><a href="{{ '/#publications' | relative_url }}">Publications</a></li>
+    <li><a href="{{ '/#team' | relative_url }}">Team</a></li>
+    <li><a href="{{ '/news/' | relative_url }}" {% if page.url contains '/news' %}class="active"{% endif %}>News</a></li>
+    <li><a href="{{ '/#doctoral' | relative_url }}">S3 Program</a></li>
+    <li><a href="{{ '/#contact' | relative_url }}" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+{{ content }}
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <p class="footer-name">{{ site.lab.fullname }}</p>
+    <p class="footer-sub">{{ site.lab.university }} · {{ site.lab.department }} · Est. {{ site.lab.established }}</p>
+  </div>
+  <div class="footer-links">
+    <a href="{{ site.lab.pi_blog }}" target="_blank">PI Blog</a>
+    <a href="{{ site.lab.scholar }}" target="_blank">Google Scholar</a>
+    <a href="{{ site.lab.sinta }}" target="_blank">SINTA</a>
+  </div>
+  <p class="footer-copy">© {{ 'now' | date: "%Y" }} ISR Lab UNEJ</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.pub-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.pub-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
