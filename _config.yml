@@ -1,5 +1,5 @@
 title: "ISR Lab — Intelligent Systems & Robotics"
-description: "Advancing automation, perception, and control intelligence for agro-industrial applications at Universitas Jember."
+description: "Advancing automation, perception, and control intelligence for agro-industrial applications and sustainable society at Universitas Jember."
 url: "https://username.github.io"   # GANTI dengan username GitHub Anda
 baseurl: "/isr-lab"                  # GANTI dengan nama repo Anda
 
@@ -8,13 +8,13 @@ lab:
   name: "ISR Lab"
   fullname: "Intelligent Systems & Robotics Laboratory"
   university: "Universitas Jember (UNEJ)"
-  department: "Dept. of Electrical Engineering"
+  # department: "Dept. of Electrical Engineering"
   address: "Jl. Kalimantan 37, Jember 68121, East Java"
   email: "khairul@unej.ac.id"
-  pi_name: "Prof. Khairul"          # GANTI nama lengkap Anda
+  pi_name: "Prof. Ir. Khairul Anam, S.T., M.T., Ph.D, IPU., ASEAN. Eng."          # GANTI nama lengkap Anda
   pi_blog: "https://khairul.staff.unej.ac.id"
-  scholar: "https://scholar.google.com"
-  sinta: "https://sinta.kemdikbud.go.id"
+  scholar: "https://scholar.google.com/citations?user=OryG4o4AAAAJ&hl=en"
+  sinta: "https://sinta.kemdiktisaintek.go.id/authors/profile/55778"
   established: "2022"
 
 # Jekyll build settings
