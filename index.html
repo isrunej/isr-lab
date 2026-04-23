@@ -324,6 +324,27 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
   .container { padding: 0 1.5rem; }
   section { padding: 4rem 0; }
 }
+/* ── LOGOS ── */
+.logo-strip { background: white; padding: 2rem 3rem; display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.logo-img-wrap { height: 56px; display: flex; align-items: center; justify-content: center; }
+.logo-img-wrap img { max-height: 56px; max-width: 130px; width: auto; object-fit: contain; filter: grayscale(30%); opacity: 0.75; transition: all 0.2s; }
+.logo-img-wrap img:hover { filter: none; opacity: 1; }
+.logo-placeholder { height: 56px; width: 120px; background: var(--gold-pale); border: 2px dashed var(--border-gold); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 0.58rem; color: var(--gold); letter-spacing: 0.06em; text-align: center; line-height: 1.5; padding: 0.4rem; }
+
+/* ── GALLERY ── */
+#gallery { background: var(--navy); }
+.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.gallery-item { position: relative; border-radius: 6px; overflow: hidden; aspect-ratio: 4/3; background: rgba(255,255,255,0.04); border: 1px solid rgba(200,151,58,0.15); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.gallery-item:hover { transform: scale(1.02); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+.gallery-item.featured { grid-column: span 2; aspect-ratio: 16/7; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; display: block; }
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.6rem; }
+.gallery-placeholder-icon { font-size: 1.75rem; opacity: 0.4; }
+.gallery-placeholder-text { font-family: var(--mono); font-size: 0.6rem; color: rgba(255,255,255,0.25); letter-spacing: 0.07em; text-align: center; line-height: 1.6; padding: 0 1rem; }
+.gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(11,29,53,0.9)); padding: 1.5rem 1rem 0.75rem; font-size: 0.78rem; color: rgba(255,255,255,0.8); font-style: italic; transform: translateY(100%); transition: transform 0.2s; }
+.gallery-item:hover .gallery-caption { transform: translateY(0); }
+@media (max-width: 900px) { .gallery-grid { grid-template-columns: 1fr 1fr; } .gallery-item.featured { grid-column: span 2; } .logo-strip { gap: 1.5rem; padding: 1.5rem; } }
 </style>
 </head>
 <body>
@@ -338,8 +359,8 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
     <li><a href="#research">Research</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="#grants">Grants</a></li>
-    <li><a href="#program">Programs</a></li>
     <li><a href="#team">Team</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
 </nav>
@@ -363,9 +384,17 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
       </div>
     </div>
     <div class="hero-card">
-      <div class="hero-card-photo">
+      <div class="hero-card-photo" style="padding:0; position:relative; overflow:hidden;">
         <span class="hero-photo-label">HEAD OF LAB</span>
-        <div class="hero-photo-icon">🎓</div>
+        <!-- ✏️ FOTO PROFIL: upload 'foto-khairul.jpg' ke folder assets/images/ di GitHub -->
+        <img src="assets/images/foto-khairul.jpg"
+             alt="Prof. Khairul Anam"
+             onerror="this.style.display='none'; document.getElementById('pi-fallback').style.display='flex';"
+             style="width:100%; height:220px; object-fit:cover; object-position:top; display:block;">
+        <div id="pi-fallback" style="display:none; width:100%; height:220px; background:linear-gradient(135deg,#1E3A5F,#0d3060); align-items:center; justify-content:center; flex-direction:column; gap:0.5rem;">
+          <span style="font-size:3.5rem;">🎓</span>
+          <span style="font-family:var(--mono); font-size:0.62rem; color:rgba(200,151,58,0.7); letter-spacing:0.1em;">UPLOAD FOTO DI SINI</span>
+        </div>
       </div>
       <div class="hero-card-body">
         <p class="hero-pi-name">Khairul Anam</p>
@@ -417,7 +446,40 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
 
 <hr class="gold-rule">
 
-<!-- ── RESEARCH ── -->
+<!-- ── LOGO STRIP ── -->
+<!-- ✏️ Upload logo ke assets/images/ lalu ganti src di bawah -->
+<div class="logo-strip">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+    <div class="logo-img-wrap">
+      <img src="assets/images/logo-unej.png" alt="Universitas Jember"
+           onerror="this.outerHTML='<div class=\'logo-placeholder\'>LOGO<br>UNEJ</div>'">
+    </div>
+    <span style="font-family:var(--mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.07em;">UNEJ</span>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+    <div class="logo-img-wrap">
+      <img src="assets/images/logo-cdast.png" alt="CDAST UNEJ"
+           onerror="this.outerHTML='<div class=\'logo-placeholder\'>LOGO<br>CDAST</div>'">
+    </div>
+    <span style="font-family:var(--mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.07em;">CDAST</span>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+    <div class="logo-img-wrap">
+      <img src="assets/images/logo-isr.png" alt="ISR Lab"
+           onerror="this.outerHTML='<div class=\'logo-placeholder\'>LOGO<br>ISR LAB</div>'">
+    </div>
+    <span style="font-family:var(--mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.07em;">ISR LAB</span>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:0.5rem;">
+    <div class="logo-img-wrap">
+      <img src="assets/images/logo-ft.png" alt="Fakultas Teknik"
+           onerror="this.outerHTML='<div class=\'logo-placeholder\'>LOGO<br>FT UNEJ</div>'">
+    </div>
+    <span style="font-family:var(--mono);font-size:0.6rem;color:var(--muted);letter-spacing:0.07em;">FT UNEJ</span>
+  </div>
+</div>
+
+<hr class="gold-rule">
 <section id="research">
   <div class="container">
     <div class="section-header fade-up">
@@ -940,7 +1002,13 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
 
       <!-- HEAD -->
       <div class="team-card head prodi-elektro">
-        <div class="team-avatar">KA</div>
+        <!-- ✏️ Upload 'foto-khairul.jpg' ke assets/images/ -->
+        <div class="team-avatar" style="overflow:hidden; padding:0;">
+          <img src="assets/images/foto-khairul.jpg"
+               alt="Khairul Anam"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='KA';"
+               style="width:100%; height:100%; object-fit:cover; object-position:top; border-radius:50%;">
+        </div>
         <div>
           <h3 class="team-name">Khairul Anam</h3>
           <p class="team-degree">Ir., S.T., M.T., Ph.D., IPU., ASEAN Eng.</p>
@@ -1063,6 +1131,85 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
     </div>
   </div>
 </section>
+
+<!-- ── GALLERY ── -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow light">Gallery / Galeri</div>
+      <h2 class="section-title white">Lab Activities</h2>
+      <p class="section-lead white">Dokumentasi kegiatan riset, workshop, demonstrasi robot, dan aktivitas ISR Lab.
+        <em>Upload foto ke folder assets/images/ di GitHub untuk mengganti placeholder di bawah.</em>
+      </p>
+    </div>
+    <div class="gallery-grid fade-up">
+
+      <!-- ✏️ Ganti src dengan nama file foto Anda di assets/images/ -->
+      <div class="gallery-item featured">
+        <img src="assets/images/gallery-lab-main.jpg" alt="ISR Lab"
+             onerror="this.style.display='none'">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">🏛️</div>
+          <div class="gallery-placeholder-text">FOTO UTAMA LAB<br>Upload: gallery-lab-main.jpg<br>(Recommended: 1200×500px)</div>
+        </div>
+        <div class="gallery-caption">ISR Lab — Gedung CDAST Lantai 7, UNEJ</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="assets/images/gallery-robot.jpg" alt="Robot ISR Lab"
+             onerror="this.style.display='none'">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">🤖</div>
+          <div class="gallery-placeholder-text">FOTO ROBOT<br>Upload: gallery-robot.jpg</div>
+        </div>
+        <div class="gallery-caption">Robot prototipe ISR Lab</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="assets/images/gallery-workshop.jpg" alt="Workshop"
+             onerror="this.style.display='none'">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">👨‍💻</div>
+          <div class="gallery-placeholder-text">FOTO WORKSHOP<br>Upload: gallery-workshop.jpg</div>
+        </div>
+        <div class="gallery-caption">Workshop & pelatihan mahasiswa</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="assets/images/gallery-research.jpg" alt="Penelitian"
+             onerror="this.style.display='none'">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">🔬</div>
+          <div class="gallery-placeholder-text">FOTO RISET<br>Upload: gallery-research.jpg</div>
+        </div>
+        <div class="gallery-caption">Aktivitas penelitian di lab</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="assets/images/gallery-equipment.jpg" alt="Peralatan"
+             onerror="this.style.display='none'">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">📡</div>
+          <div class="gallery-placeholder-text">FOTO PERALATAN<br>Upload: gallery-equipment.jpg</div>
+        </div>
+        <div class="gallery-caption">Peralatan & instrumentasi lab</div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="assets/images/gallery-team.jpg" alt="Tim ISR Lab"
+             onerror="this.style.display='none'">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">👥</div>
+          <div class="gallery-placeholder-text">FOTO TIM<br>Upload: gallery-team.jpg</div>
+        </div>
+        <div class="gallery-caption">Tim peneliti ISR Lab</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="gold-rule">
 
 <!-- ── CONTACT ── -->
 <section id="contact">
