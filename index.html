@@ -336,8 +336,8 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
   </a>
   <ul class="nav-links">
     <li><a href="#research">Research</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#publications">Publications</a></li>
+    <li><a href="#grants">Grants</a></li>
     <li><a href="#program">Programs</a></li>
     <li><a href="#team">Team</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
@@ -376,10 +376,13 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
             <span class="pi-link-icon">🌐</span> khairul.staff.unej.ac.id
           </a>
           <a href="https://scholar.google.co.id/citations?user=OryG4o4AAAAJ" target="_blank" class="pi-link">
-            <span class="pi-link-icon">🎓</span> Google Scholar Profile
+            <span class="pi-link-icon">🎓</span> Google Scholar · H-Index 15
           </a>
-          <a href="https://sinta.kemdiktisaintek.go.id" target="_blank" class="pi-link">
-            <span class="pi-link-icon">📊</span> SINTA Profile
+          <a href="https://www.scopus.com/authid/detail.uri?authorId=55566596100" target="_blank" class="pi-link">
+            <span class="pi-link-icon">📘</span> Scopus ID 55566596100 · H-Index 11
+          </a>
+          <a href="https://sinta.kemdiktisaintek.go.id/authors/profile/55778" target="_blank" class="pi-link">
+            <span class="pi-link-icon">📊</span> SINTA ID 55778
           </a>
           <a href="mailto:khairul@unej.ac.id" class="pi-link">
             <span class="pi-link-icon">📧</span> khairul@unej.ac.id
@@ -390,24 +393,24 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
   </div>
   <div class="hero-stats">
     <div class="hero-stat">
-      <div class="hero-stat-num">10+</div>
-      <div class="hero-stat-en">Active Members</div>
-      <div class="hero-stat-id">Anggota aktif lintas prodi</div>
+      <div class="hero-stat-num">105+</div>
+      <div class="hero-stat-en">Publications</div>
+      <div class="hero-stat-id">Artikel di Google Scholar</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num">20+</div>
-      <div class="hero-stat-en">Publications</div>
-      <div class="hero-stat-id">Publikasi ilmiah</div>
+      <div class="hero-stat-num">15</div>
+      <div class="hero-stat-en">H-Index (Scholar)</div>
+      <div class="hero-stat-id">H-Index Scopus: 11</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">100+</div>
+      <div class="hero-stat-en">Graduates Supervised</div>
+      <div class="hero-stat-id">D3, D4, S1, S2 dibimbing</div>
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num">6</div>
       <div class="hero-stat-en">Disciplines</div>
-      <div class="hero-stat-id">Prodi yang terlibat</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">S1–S2</div>
-      <div class="hero-stat-en">Degree Programs</div>
-      <div class="hero-stat-id">Program studi aktif</div>
+      <div class="hero-stat-id">Prodi lintas fakultas</div>
     </div>
   </div>
 </section>
@@ -630,49 +633,291 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
     <div class="section-header-row fade-up">
       <div>
         <div class="section-eyebrow">Publications / Publikasi</div>
-        <h2 class="section-title">Research Output</h2>
-        <p class="section-lead">Peer-reviewed contributions from ISR Lab across robotics, control systems, biosignal, and intelligent systems.</p>
+        <h2 class="section-title">Journal Articles</h2>
+        <p class="section-lead">Selected peer-reviewed journal articles from ISR Lab. Full list of 105+ publications available on Google Scholar.</p>
       </div>
-      <a href="https://scholar.google.co.id/citations?user=OryG4o4AAAAJ" target="_blank" class="btn btn-gold">Google Scholar →</a>
+      <a href="https://scholar.google.co.id/citations?user=OryG4o4AAAAJ" target="_blank" class="btn btn-gold">105+ on Scholar →</a>
     </div>
     <div class="pub-filter fade-up">
-      <button class="pf-btn active">All</button>
-      <button class="pf-btn">Journal</button>
-      <button class="pf-btn">Conference</button>
-      <button class="pf-btn">2025</button>
-      <button class="pf-btn">2024</button>
+      <button class="pf-btn active" onclick="filterPub('all')">All</button>
+      <button class="pf-btn" onclick="filterPub('2025')">2025</button>
+      <button class="pf-btn" onclick="filterPub('2024')">2024</button>
+      <button class="pf-btn" onclick="filterPub('2023')">2023</button>
+      <button class="pf-btn" onclick="filterPub('2022')">2022–Earlier</button>
     </div>
-    <div class="pub-list fade-up">
-      <div class="pub-item">
+    <div class="pub-list fade-up" id="pub-list">
+
+      <!-- 2025 -->
+      <div class="pub-item" data-year="2025">
         <span class="pub-year">2025</span>
         <div>
           <p class="pub-type">Journal · Scopus</p>
-          <p class="pub-title">Tambahkan judul publikasi terbaru di sini</p>
-          <p class="pub-authors">Khairul Anam, et al. — ISR Lab, Universitas Jember</p>
-          <p class="pub-venue">Nama Jurnal · Publisher · Quartile</p>
+          <p class="pub-title">Myoelectric grip force prediction using deep learning for hand robot</p>
+          <p class="pub-authors">Khairul Anam (First Author) — Universitas Jember</p>
+          <p class="pub-venue">IAES International Journal of Artificial Intelligence (IJ-AI) · Vol 14 No. 4, 2025</p>
         </div>
-        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a><a href="#" class="pub-btn-link">PDF</a></div>
+        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a></div>
       </div>
-      <div class="pub-item">
-        <span class="pub-year">2024</span>
+
+      <div class="pub-item" data-year="2025">
+        <span class="pub-year">2025</span>
+        <div>
+          <p class="pub-type">Journal · Scopus</p>
+          <p class="pub-title">Evaluation of long-short-term memory on simultaneous and proportional myoelectric control system for individual finger movements</p>
+          <p class="pub-authors">Khairul Anam (First Author) — Universitas Jember</p>
+          <p class="pub-venue">Research on Biomedical Engineering · 41(1), 9, 2025</p>
+        </div>
+        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a></div>
+      </div>
+
+      <div class="pub-item" data-year="2025">
+        <span class="pub-year">2025</span>
+        <div>
+          <p class="pub-type">Journal · Scopus</p>
+          <p class="pub-title">Evaluation of LSTM for predicting grip strength using electromyography: a comparison of setups and methods</p>
+          <p class="pub-authors">Khairul Anam (First Author) — Universitas Jember</p>
+          <p class="pub-venue">Neural Computing and Applications · 2025, 1–25</p>
+        </div>
+        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a></div>
+      </div>
+
+      <div class="pub-item" data-year="2025">
+        <span class="pub-year">2025</span>
+        <div>
+          <p class="pub-type">Journal · Scopus</p>
+          <p class="pub-title">Electric wheelchair navigation based on hand gestures prediction using the k-Nearest Neighbor method</p>
+          <p class="pub-authors">Khairul Anam (First Author) — Universitas Jember</p>
+          <p class="pub-venue">Journal of Mechatronics, Electrical Power, and Vehicular Technology · 16(1), 132–143, 2025</p>
+        </div>
+        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a></div>
+      </div>
+
+      <div class="pub-item" data-year="2025">
+        <span class="pub-year">2025</span>
+        <div>
+          <p class="pub-type">Journal · Scopus</p>
+          <p class="pub-title">Electroencephalography-based wheelchair navigation control using convolutional neural network method</p>
+          <p class="pub-authors">Khairul Anam (First Author) — Universitas Jember</p>
+          <p class="pub-venue">TELKOMNIKA (Telecommunication Computing Electronics and Control) · Vol. 23(1), 147–155, 2025</p>
+        </div>
+        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a></div>
+      </div>
+
+      <!-- 2023 -->
+      <div class="pub-item" data-year="2023">
+        <span class="pub-year">2023</span>
+        <div>
+          <p class="pub-type">Journal · Scopus</p>
+          <p class="pub-title">Random forest-based simultaneous and proportional myoelectric control system for finger movements</p>
+          <p class="pub-authors">Khairul Anam (First Author) — Universitas Jember</p>
+          <p class="pub-venue">Computer Methods in Biomechanics and Biomedical Engineering · 2023</p>
+        </div>
+        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a></div>
+      </div>
+
+      <div class="pub-item" data-year="2023">
+        <span class="pub-year">2023</span>
+        <div>
+          <p class="pub-type">Journal · Scopus</p>
+          <p class="pub-title">Feature Extraction Evaluation of Various Machine Learning Methods for Finger Movement Classification using Double Myo Armband</p>
+          <p class="pub-authors">Khairul Anam (First Author) — Universitas Jember</p>
+          <p class="pub-venue">Journal of Engineering and Technological Sciences · 55(5), 587–599, 2023</p>
+        </div>
+        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a></div>
+      </div>
+
+      <!-- 2021 -->
+      <div class="pub-item" data-year="2022">
+        <span class="pub-year">2021</span>
+        <div>
+          <p class="pub-type">Journal · Scopus Q1</p>
+          <p class="pub-title">Comprehensive measurement and evaluation of modern paddy cultivation with a hydroganics system under different nutrient regimes using WSN and ground-based remote sensing</p>
+          <p class="pub-authors">Khairul Anam (Co-author) — Universitas Jember</p>
+          <p class="pub-venue">Measurement: Journal of the International Measurement Confederation · Vol. 178, 2021</p>
+        </div>
+        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a></div>
+      </div>
+
+      <div class="pub-item" data-year="2022">
+        <span class="pub-year">2021</span>
+        <div>
+          <p class="pub-type">Journal · Scopus Q3</p>
+          <p class="pub-title">Improved myoelectric pattern recognition of finger movement using rejection-based extreme learning machine</p>
+          <p class="pub-authors">Khairul Anam (Author) — Universitas Jember</p>
+          <p class="pub-venue">Telkomnika · Vol. 19, No. 1, February 2021</p>
+        </div>
+        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a></div>
+      </div>
+
+      <div class="pub-item" data-year="2022">
+        <span class="pub-year">2020</span>
         <div>
           <p class="pub-type">Journal · Scopus Q2</p>
-          <p class="pub-title">Adaptive Fuzzy-PID Control for 3-DOF Agro-Industrial Robot Arm with Variable Payload</p>
-          <p class="pub-authors">Khairul Anam, et al. — ISR Lab, Universitas Jember</p>
-          <p class="pub-venue">International Journal of Advanced Robotic Systems · SAGE</p>
+          <p class="pub-title">Hierarchical linear and nonlinear adaptive learning model for system identification and prediction</p>
+          <p class="pub-authors">Khairul Anam (Co-author) — Universitas Jember</p>
+          <p class="pub-venue">Applied Intelligence · Vol. 50, March 2020</p>
         </div>
-        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a><a href="#" class="pub-btn-link">PDF</a></div>
+        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a></div>
       </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;" class="fade-up">
+      <a href="https://scholar.google.co.id/citations?user=OryG4o4AAAAJ" target="_blank" class="btn btn-outline-navy">View All 105+ Publications on Google Scholar →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="gold-rule">
+
+<!-- ── BOOKS ── -->
+<section id="books" style="background: var(--cream);">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Books / Buku Ajar</div>
+      <h2 class="section-title">Authored Textbooks</h2>
+      <p class="section-lead">Buku ajar yang ditulis untuk mendukung pendidikan teknik di Universitas Jember dan perguruan tinggi lain di Indonesia.</p>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:1.5rem;" class="fade-up">
+
+      <div style="background:white; border:1px solid var(--border); border-radius:8px; overflow:hidden;">
+        <div style="background:var(--navy); padding:2rem; display:flex; align-items:center; justify-content:center; font-size:3rem;">📘</div>
+        <div style="padding:1.5rem;">
+          <p style="font-family:var(--mono); font-size:0.62rem; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.5rem;">2022 · Deepublish</p>
+          <h3 style="font-family:var(--serif); font-size:1.15rem; font-weight:600; color:var(--navy); margin-bottom:0.5rem; line-height:1.3;">Buku Ajar Sistem Kendali Cerdas</h3>
+          <p style="font-family:var(--mono); font-size:0.68rem; color:var(--muted);">ISBN: 978-623-025-757-5</p>
+        </div>
+      </div>
+
+      <div style="background:white; border:1px solid var(--border); border-radius:8px; overflow:hidden;">
+        <div style="background:var(--navy); padding:2rem; display:flex; align-items:center; justify-content:center; font-size:3rem;">📗</div>
+        <div style="padding:1.5rem;">
+          <p style="font-family:var(--mono); font-size:0.62rem; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.5rem;">2023 · UPT Penerbitan UNEJ</p>
+          <h3 style="font-family:var(--serif); font-size:1.15rem; font-weight:600; color:var(--navy); margin-bottom:0.5rem; line-height:1.3;">Deep Learning untuk Agroindustri</h3>
+          <p style="font-family:var(--mono); font-size:0.68rem; color:var(--muted);">ISBN: 978-623-477-145-9</p>
+        </div>
+      </div>
+
+      <div style="background:white; border:1px solid var(--border); border-radius:8px; overflow:hidden;">
+        <div style="background:var(--navy); padding:2rem; display:flex; align-items:center; justify-content:center; font-size:3rem;">📙</div>
+        <div style="padding:1.5rem;">
+          <p style="font-family:var(--mono); font-size:0.62rem; color:var(--gold); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.5rem;">2023 · UPT Penerbitan UNEJ</p>
+          <h3 style="font-family:var(--serif); font-size:1.15rem; font-weight:600; color:var(--navy); margin-bottom:0.5rem; line-height:1.3;">Sistem Kontrol</h3>
+          <p style="font-family:var(--mono); font-size:0.68rem; color:var(--muted);">ISBN: 978-623-477-101-5</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="gold-rule">
+
+<!-- ── RESEARCH GRANTS ── -->
+<section id="grants" style="background:white;">
+  <div class="container">
+    <div class="section-header-row fade-up">
+      <div>
+        <div class="section-eyebrow">Research Grants / Hibah Penelitian</div>
+        <h2 class="section-title">Funded Research Projects</h2>
+        <p class="section-lead">Proyek penelitian yang didanai hibah kompetitif nasional dan institusional (2020–2025).</p>
+      </div>
+    </div>
+    <div class="pub-list fade-up">
+
+      <div class="pub-item">
+        <span class="pub-year">2025</span>
+        <div>
+          <p class="pub-type">Ketua · DPPM PTM Kemendiktisaintek</p>
+          <p class="pub-title">Pengembangan Model Estimasi Waktu Pengeringan Kopi Menggunakan Machine Learning pada Sistem Pengering Portabel</p>
+          <p class="pub-venue" style="color:var(--muted); font-style:normal;">Rp 34,06 juta</p>
+        </div>
+        <div class="pub-actions"><span style="font-family:var(--mono);font-size:0.65rem;color:var(--gold);background:var(--gold-pale);padding:0.3rem 0.7rem;border-radius:3px;">Ketua</span></div>
+      </div>
+
+      <div class="pub-item">
+        <span class="pub-year">2025</span>
+        <div>
+          <p class="pub-type">Ketua · Hibah Keris-Dimas LP2M UNEJ</p>
+          <p class="pub-title">Implementasi Inverse Kinematic Pada Robot Hexapod Untuk Kendali Keseimbangan Di Medan Bertingkat</p>
+          <p class="pub-venue" style="color:var(--muted); font-style:normal;">Rp 31,54 juta</p>
+        </div>
+        <div class="pub-actions"><span style="font-family:var(--mono);font-size:0.65rem;color:var(--gold);background:var(--gold-pale);padding:0.3rem 0.7rem;border-radius:3px;">Ketua</span></div>
+      </div>
+
       <div class="pub-item">
         <span class="pub-year">2024</span>
         <div>
-          <p class="pub-type">Conference · IEEE</p>
-          <p class="pub-title">Real-time Coffee Bean Defect Detection using Lightweight CNN on Edge Devices</p>
-          <p class="pub-authors">Khairul Anam, et al. — ISR Lab, Universitas Jember</p>
-          <p class="pub-venue">International Conference on Electrical Engineering (ICEE) 2024</p>
+          <p class="pub-type">Ketua · Hibah Percepatan Guru Besar LP2M UNEJ</p>
+          <p class="pub-title">Sistem Kendali Kekuatan Genggam Robot Eksoskeleton berbasis sinyal otot menggunakan Incremental Transfer Learning</p>
+          <p class="pub-venue" style="color:var(--muted); font-style:normal;">Rp 60 juta</p>
         </div>
-        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a><a href="#" class="pub-btn-link">Slides</a></div>
+        <div class="pub-actions"><span style="font-family:var(--mono);font-size:0.65rem;color:var(--gold);background:var(--gold-pale);padding:0.3rem 0.7rem;border-radius:3px;">Ketua</span></div>
       </div>
+
+      <div class="pub-item">
+        <span class="pub-year">2023</span>
+        <div>
+          <p class="pub-type">Ketua · Hibah Percepatan Guru Besar LP2M UNEJ</p>
+          <p class="pub-title">Sistem Kontrol Genggam Robot Eksoskeleton Tangan berbasis sinyal otot menggunakan Deep Learning CNN-LSTM</p>
+          <p class="pub-venue" style="color:var(--muted); font-style:normal;">Rp 67,7 juta</p>
+        </div>
+        <div class="pub-actions"><span style="font-family:var(--mono);font-size:0.65rem;color:var(--gold);background:var(--gold-pale);padding:0.3rem 0.7rem;border-radius:3px;">Ketua</span></div>
+      </div>
+
+      <div class="pub-item">
+        <span class="pub-year">2022</span>
+        <div>
+          <p class="pub-type">Ketua · Hibah Kompetisi Nasional – WCR</p>
+          <p class="pub-title">Desain pengenalan pola gerakan tangan yang kokoh berbasis sinyal EEG menggunakan Autonomous Learning Machine (Tahun 2)</p>
+          <p class="pub-venue" style="color:var(--muted); font-style:normal;">Rp 139 juta</p>
+        </div>
+        <div class="pub-actions"><span style="font-family:var(--mono);font-size:0.65rem;color:var(--gold);background:var(--gold-pale);padding:0.3rem 0.7rem;border-radius:3px;">Ketua</span></div>
+      </div>
+
+      <div class="pub-item">
+        <span class="pub-year">2021</span>
+        <div>
+          <p class="pub-type">Ketua · Hibah Kompetisi Nasional – WCR</p>
+          <p class="pub-title">Desain pengenalan pola gerakan tangan yang kokoh berbasis sinyal EEG menggunakan Autonomous Learning Machine</p>
+          <p class="pub-venue" style="color:var(--muted); font-style:normal;">Rp 200,1 juta</p>
+        </div>
+        <div class="pub-actions"><span style="font-family:var(--mono);font-size:0.65rem;color:var(--gold);background:var(--gold-pale);padding:0.3rem 0.7rem;border-radius:3px;">Ketua</span></div>
+      </div>
+
+      <div class="pub-item">
+        <span class="pub-year">2021</span>
+        <div>
+          <p class="pub-type">Ketua · Hibah Kompetisi Nasional – Penelitian Terapan</p>
+          <p class="pub-title">Sistem Pemulihan Gerak Fungsionalitas Tangan Pasca Serangan Stroke menggunakan Robot Eksoskeleton Tangan</p>
+          <p class="pub-venue" style="color:var(--muted); font-style:normal;">Rp 181,6 juta</p>
+        </div>
+        <div class="pub-actions"><span style="font-family:var(--mono);font-size:0.65rem;color:var(--gold);background:var(--gold-pale);padding:0.3rem 0.7rem;border-radius:3px;">Ketua</span></div>
+      </div>
+
+      <div class="pub-item">
+        <span class="pub-year">2021</span>
+        <div>
+          <p class="pub-type">Ketua · Hibah Kompetisi Nasional – Penelitian Dasar</p>
+          <p class="pub-title">Desain Sistem Kontrol Gerakan Sendi Robot Tangan Prostesis berbasis Deep Learning Neural Network</p>
+          <p class="pub-venue" style="color:var(--muted); font-style:normal;">Rp 131,2 juta</p>
+        </div>
+        <div class="pub-actions"><span style="font-family:var(--mono);font-size:0.65rem;color:var(--gold);background:var(--gold-pale);padding:0.3rem 0.7rem;border-radius:3px;">Ketua</span></div>
+      </div>
+
+      <div class="pub-item">
+        <span class="pub-year">2020</span>
+        <div>
+          <p class="pub-type">Ketua · Hibah Penelitian Dasar Kompetitif Nasional DRPM</p>
+          <p class="pub-title">Desain Sistem Kontrol Mioelektrik Proporsional dan Simultan untuk Tangan Prostetik Menggunakan Randomized Deep Learning Neural Networks</p>
+          <p class="pub-venue" style="color:var(--muted); font-style:normal;">Rp 64,66 juta</p>
+        </div>
+        <div class="pub-actions"><span style="font-family:var(--mono);font-size:0.65rem;color:var(--gold);background:var(--gold-pale);padding:0.3rem 0.7rem;border-radius:3px;">Ketua</span></div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:1.5rem;" class="fade-up">
+      <p style="font-size:0.82rem;color:var(--muted);font-style:italic;">* Menampilkan 9 dari 18 proyek penelitian (2020–2025). Total akumulasi hibah > Rp 1,2 miliar.</p>
     </div>
   </div>
 </section>
@@ -905,12 +1150,17 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
   }, { threshold: 0.07 });
   document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
-  document.querySelectorAll('.pf-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  function filterPub(year) {
+    document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('#pub-list .pub-item').forEach(item => {
+      if (year === 'all' || item.dataset.year === year) {
+        item.style.display = 'grid';
+      } else {
+        item.style.display = 'none';
+      }
     });
-  });
+  }
 </script>
 </body>
 </html>
