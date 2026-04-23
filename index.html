@@ -19,17 +19,13 @@
   --muted:       #6B7A8D;
   --border:      rgba(11,29,53,0.10);
   --border-gold: rgba(200,151,58,0.30);
-
   --serif: 'Cormorant Garamond', Georgia, serif;
   --sans:  'Outfit', sans-serif;
   --mono:  'Fira Code', monospace;
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: var(--sans); background: var(--cream); color: var(--ink); overflow-x: hidden; }
-
-/* ── GRAIN OVERLAY ── */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
@@ -41,54 +37,31 @@ body::before {
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 3rem;
-  height: 64px;
+  padding: 0 3rem; height: 64px;
   background: rgba(11,29,53,0.96);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(200,151,58,0.2);
 }
-.nav-logo {
-  display: flex; align-items: center; gap: 0.75rem;
-  text-decoration: none;
-}
+.nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
 .nav-logo-mark {
   width: 36px; height: 36px;
   background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif); font-size: 1rem; font-weight: 700;
-  color: var(--navy); letter-spacing: -0.02em;
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--navy);
 }
-.nav-logo-text {
-  font-family: var(--mono); font-size: 0.72rem;
-  color: rgba(255,255,255,0.85); letter-spacing: 0.08em;
-}
+.nav-logo-text { font-family: var(--mono); font-size: 0.72rem; color: rgba(255,255,255,0.85); letter-spacing: 0.08em; }
 .nav-logo-text span { color: var(--gold-light); }
 .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
-.nav-links a {
-  font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.65);
-  text-decoration: none; padding: 0.4rem 0.85rem; border-radius: 4px;
-  transition: all 0.2s; letter-spacing: 0.01em;
-}
+.nav-links a { font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.65); text-decoration: none; padding: 0.4rem 0.85rem; border-radius: 4px; transition: all 0.2s; }
 .nav-links a:hover { color: white; background: rgba(255,255,255,0.08); }
-.nav-links .nav-cta {
-  background: var(--gold); color: var(--navy) !important;
-  font-weight: 600; margin-left: 0.5rem;
-}
+.nav-links .nav-cta { background: var(--gold); color: var(--navy) !important; font-weight: 600; margin-left: 0.5rem; }
 .nav-links .nav-cta:hover { background: var(--gold-light); }
 
 /* ── HERO ── */
-#hero {
-  position: relative; min-height: 100vh;
-  display: flex; flex-direction: column; justify-content: center;
-  overflow: hidden;
-  background: var(--navy);
-}
+#hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; background: var(--navy); }
 .hero-bg-grid {
   position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(200,151,58,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,151,58,0.06) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(200,151,58,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(200,151,58,0.06) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 .hero-bg-glow {
@@ -100,86 +73,52 @@ nav {
   position: relative; z-index: 1;
   max-width: 1200px; margin: 0 auto;
   padding: 8rem 3rem 5rem;
-  display: grid; grid-template-columns: 1fr 420px; gap: 5rem; align-items: center;
+  display: grid; grid-template-columns: 1fr 400px; gap: 5rem; align-items: center;
 }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 0.6rem;
   font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em;
   color: var(--gold-light); text-transform: uppercase;
-  border: 1px solid var(--border-gold);
-  padding: 0.35rem 0.9rem; border-radius: 20px;
+  border: 1px solid var(--border-gold); padding: 0.35rem 0.9rem; border-radius: 20px;
   margin-bottom: 1.75rem;
 }
 .hero-eyebrow::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
-.hero-title {
-  font-family: var(--serif);
-  font-size: clamp(3rem, 5.5vw, 5.5rem);
-  font-weight: 600; line-height: 1.05;
-  color: white; margin-bottom: 0.4rem;
-}
+.hero-title { font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 5rem); font-weight: 600; line-height: 1.05; color: white; margin-bottom: 0.4rem; }
 .hero-title .gold { color: var(--gold-light); font-style: italic; }
-.hero-subtitle {
-  font-family: var(--serif); font-size: clamp(1.1rem, 1.8vw, 1.5rem);
-  color: rgba(255,255,255,0.45); font-weight: 400; font-style: italic;
-  margin-bottom: 2rem; letter-spacing: 0.02em;
-}
-.hero-desc {
-  font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.6);
-  max-width: 520px; margin-bottom: 2.5rem;
-}
+.hero-subtitle { font-family: var(--serif); font-size: clamp(1rem, 1.6vw, 1.35rem); color: rgba(255,255,255,0.4); font-style: italic; margin-bottom: 1.75rem; }
+.hero-desc { font-size: 0.95rem; line-height: 1.8; color: rgba(255,255,255,0.6); max-width: 520px; margin-bottom: 2.5rem; }
 .hero-desc strong { color: rgba(255,255,255,0.9); }
+.hero-desc em { color: rgba(255,255,255,0.35); font-style: italic; display: block; margin-top: 0.6rem; font-size: 0.875rem; }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-.btn {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  padding: 0.8rem 2rem; font-family: var(--sans); font-size: 0.875rem;
-  font-weight: 600; text-decoration: none; border-radius: 4px;
-  transition: all 0.22s; cursor: pointer; border: none; letter-spacing: 0.02em;
-}
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 2rem; font-family: var(--sans); font-size: 0.875rem; font-weight: 600; text-decoration: none; border-radius: 4px; transition: all 0.22s; cursor: pointer; border: none; letter-spacing: 0.02em; }
 .btn-gold { background: var(--gold); color: var(--navy); }
 .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(200,151,58,0.3); }
 .btn-outline-white { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.25); }
 .btn-outline-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.45); }
+.btn-outline-navy { background: transparent; color: var(--navy); border: 1px solid var(--navy); }
+.btn-outline-navy:hover { background: var(--navy); color: white; }
 
-/* Hero right — photo card */
-.hero-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(200,151,58,0.2);
-  border-radius: 12px; overflow: hidden;
-}
+/* PI Card */
+.hero-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(200,151,58,0.2); border-radius: 12px; overflow: hidden; }
 .hero-card-photo {
-  height: 220px;
-  background: linear-gradient(135deg, var(--navy-light) 0%, #0d3060 50%, #102448 100%);
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
+  height: 200px;
+  background: linear-gradient(135deg, var(--navy-light), #0d3060);
+  display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
 }
-.hero-card-photo::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(200,151,58,0.04) 10px, rgba(200,151,58,0.04) 20px);
-}
-.hero-photo-label {
-  position: absolute; top: 1rem; left: 1rem;
-  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
-  color: var(--gold-light); background: rgba(0,0,0,0.4); padding: 0.2rem 0.5rem; border-radius: 3px;
-}
-.hero-photo-icon { font-size: 4rem; position: relative; z-index: 1; }
+.hero-card-photo::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(200,151,58,0.04) 10px, rgba(200,151,58,0.04) 20px); }
+.hero-photo-label { position: absolute; top: 1rem; left: 1rem; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--gold-light); background: rgba(0,0,0,0.4); padding: 0.2rem 0.5rem; border-radius: 3px; }
+.hero-photo-icon { font-size: 3.5rem; position: relative; z-index: 1; }
 .hero-card-body { padding: 1.5rem; }
-.hero-pi-name {
-  font-family: var(--serif); font-size: 1.3rem; font-weight: 600;
-  color: white; margin-bottom: 0.2rem;
-}
-.hero-pi-title { font-size: 0.78rem; color: var(--gold-light); margin-bottom: 1rem; font-weight: 500; }
-.hero-pi-links { display: flex; flex-direction: column; gap: 0.45rem; }
-.pi-link {
-  display: flex; align-items: center; gap: 0.6rem;
-  font-size: 0.78rem; color: rgba(255,255,255,0.55);
-  text-decoration: none; transition: color 0.2s;
-}
+.hero-pi-name { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: white; margin-bottom: 0.15rem; line-height: 1.3; }
+.hero-pi-degree { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-bottom: 0.25rem; font-family: var(--mono); }
+.hero-pi-title { font-size: 0.75rem; color: var(--gold-light); margin-bottom: 1rem; font-weight: 500; }
+.hero-pi-links { display: flex; flex-direction: column; gap: 0.4rem; }
+.pi-link { display: flex; align-items: center; gap: 0.6rem; font-size: 0.75rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
 .pi-link:hover { color: var(--gold-light); }
-.pi-link-icon { width: 20px; text-align: center; font-size: 0.85rem; }
+.pi-link-icon { width: 18px; text-align: center; font-size: 0.8rem; }
 
-/* Hero stats bar */
+/* Stats bar */
 .hero-stats {
   position: relative; z-index: 1;
   max-width: 1200px; margin: 0 auto;
@@ -188,232 +127,200 @@ nav {
   gap: 1px; background: rgba(200,151,58,0.15);
   border-top: 1px solid rgba(200,151,58,0.15);
 }
-.hero-stat {
-  background: var(--navy); padding: 1.75rem 2rem;
-  display: flex; flex-direction: column; gap: 0.3rem;
-}
-.hero-stat-num {
-  font-family: var(--serif); font-size: 2.8rem; font-weight: 700;
-  color: var(--gold-light); line-height: 1;
-}
+.hero-stat { background: var(--navy); padding: 1.75rem 2rem; display: flex; flex-direction: column; gap: 0.3rem; }
+.hero-stat-num { font-family: var(--serif); font-size: 2.8rem; font-weight: 700; color: var(--gold-light); line-height: 1; }
 .hero-stat-en { font-size: 0.8rem; color: white; font-weight: 500; }
-.hero-stat-id { font-size: 0.72rem; color: rgba(255,255,255,0.4); font-style: italic; }
+.hero-stat-id { font-size: 0.7rem; color: rgba(255,255,255,0.35); font-style: italic; }
 
-/* ── COMMON SECTION ── */
-section { padding: 6rem 0; position: relative; z-index: 1; }
+/* ── COMMONS ── */
+section { padding: 5.5rem 0; position: relative; z-index: 1; }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
-.section-eyebrow {
-  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.15em;
-  color: var(--gold); text-transform: uppercase; margin-bottom: 0.6rem;
-  display: flex; align-items: center; gap: 0.6rem;
-}
+.section-eyebrow { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.6rem; }
 .section-eyebrow::after { content: ''; flex: 0 0 30px; height: 1px; background: var(--gold); opacity: 0.4; }
-.section-title {
-  font-family: var(--serif); font-size: clamp(2rem, 3vw, 2.8rem);
-  font-weight: 600; color: var(--navy); line-height: 1.15; margin-bottom: 0.75rem;
-}
-.section-title-white { color: white; }
-.section-lead { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 580px; }
-.section-lead-white { color: rgba(255,255,255,0.55); }
+.section-eyebrow.light { color: var(--gold-light); }
+.section-eyebrow.light::after { background: var(--gold-light); }
+.section-title { font-family: var(--serif); font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 600; color: var(--navy); line-height: 1.15; margin-bottom: 0.75rem; }
+.section-title.white { color: white; }
+.section-lead { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 600px; }
+.section-lead.white { color: rgba(255,255,255,0.55); }
+.section-lead em { display: block; margin-top: 0.4rem; opacity: 0.7; }
 .section-header { margin-bottom: 3rem; }
 .section-header-row { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+.gold-rule { border: none; border-top: 1px solid var(--border-gold); margin: 0; }
 
 /* ── RESEARCH ── */
 #research { background: white; }
-.research-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  border: 1px solid var(--border);
-  gap: 1px; background: var(--border);
-}
-.rc {
-  background: white; padding: 2.25rem;
-  transition: background 0.2s;
-  position: relative;
-}
+.research-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); gap: 1px; background: var(--border); }
+.rc { background: white; padding: 2.25rem; position: relative; transition: background 0.2s; }
 .rc:hover { background: #FAFAF7; }
-.rc::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--gold), transparent);
-  opacity: 0; transition: opacity 0.2s;
-}
+.rc::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); opacity: 0; transition: opacity 0.2s; }
 .rc:hover::before { opacity: 1; }
 .rc-num { font-family: var(--mono); font-size: 0.65rem; color: var(--gold); opacity: 0.7; margin-bottom: 1.25rem; letter-spacing: 0.1em; }
 .rc-icon { font-size: 1.75rem; margin-bottom: 0.85rem; }
-.rc-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 0.6rem; line-height: 1.3; }
-.rc-en { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 0.5rem; }
-.rc-id { font-size: 0.78rem; color: var(--muted); font-style: italic; line-height: 1.55; margin-bottom: 1rem; opacity: 0.8; }
+.rc-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; line-height: 1.3; }
+.rc-en { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 0.4rem; }
+.rc-id { font-size: 0.77rem; color: var(--muted); font-style: italic; line-height: 1.55; margin-bottom: 1rem; opacity: 0.75; }
 .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.tag {
-  font-family: var(--mono); font-size: 0.62rem; padding: 0.22rem 0.6rem;
-  background: var(--gold-pale); color: var(--navy);
-  border-radius: 3px; letter-spacing: 0.04em;
-}
+.tag { font-family: var(--mono); font-size: 0.62rem; padding: 0.22rem 0.6rem; background: var(--gold-pale); color: var(--navy); border-radius: 3px; }
 
 /* ── ROADMAP ── */
 #roadmap { background: var(--navy); }
-.rm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 1rem; }
-.rm-card {
-  padding: 1.75rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 6px;
-  position: relative; overflow: hidden; transition: border-color 0.2s;
-}
+.rm-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.rm-card { padding: 1.75rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; position: relative; overflow: hidden; transition: border-color 0.2s; }
 .rm-card:hover { border-color: rgba(200,151,58,0.3); }
 .rm-card.active { border-color: var(--gold); background: rgba(200,151,58,0.06); }
-.rm-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--gold); opacity: 0.25;
-}
+.rm-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); opacity: 0.2; }
 .rm-card.active::before { opacity: 1; }
-.rm-phase-tag { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; color: var(--gold-light); margin-bottom: 0.6rem; }
-.rm-years { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: white; margin-bottom: 0.25rem; line-height: 1; }
-.rm-badge {
-  display: inline-block; font-family: var(--mono); font-size: 0.6rem;
-  padding: 0.18rem 0.55rem; border-radius: 3px; margin-bottom: 1rem; letter-spacing: 0.06em;
-}
+.rm-phase-tag { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; color: var(--gold-light); margin-bottom: 0.5rem; }
+.rm-years { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: white; margin-bottom: 0.25rem; }
+.rm-badge { display: inline-block; font-family: var(--mono); font-size: 0.6rem; padding: 0.18rem 0.55rem; border-radius: 3px; margin-bottom: 1rem; letter-spacing: 0.06em; }
 .rm-badge.done { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.4); }
 .rm-badge.ongoing { background: rgba(200,151,58,0.15); color: var(--gold-light); }
-.rm-badge.planned { background: rgba(30,58,95,0.6); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.1); }
+.rm-badge.planned { background: rgba(30,58,95,0.6); color: rgba(255,255,255,0.45); border: 1px solid rgba(255,255,255,0.1); }
 .rm-title { font-family: var(--serif); font-size: 1rem; font-weight: 600; color: white; margin-bottom: 0.5rem; line-height: 1.3; }
-.rm-desc { font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.6; margin-bottom: 1rem; font-style: italic; }
+.rm-desc { font-size: 0.77rem; color: rgba(255,255,255,0.4); line-height: 1.6; margin-bottom: 1rem; font-style: italic; }
 .rm-items { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
 .rm-items li { font-size: 0.75rem; color: rgba(255,255,255,0.55); display: flex; gap: 0.5rem; line-height: 1.4; }
 .rm-items li::before { content: '→'; color: var(--gold); flex-shrink: 0; font-size: 0.65rem; margin-top: 0.1rem; }
 
-/* ── PROGRAM / S1+S2 ── */
+/* ── PROGRAMS ── */
 #program { background: var(--cream); }
 .prog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
-.prog-card {
-  border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
-  background: white; transition: box-shadow 0.2s;
-}
+.prog-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: white; transition: box-shadow 0.2s; }
 .prog-card:hover { box-shadow: 0 8px 32px rgba(11,29,53,0.08); }
-.prog-card-header {
-  background: var(--navy); padding: 1.75rem 2rem;
-  display: flex; align-items: center; gap: 1rem;
-}
-.prog-level {
-  width: 52px; height: 52px; border-radius: 8px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--serif); font-size: 1.4rem; font-weight: 700; color: var(--navy);
-  flex-shrink: 0;
-}
+.prog-card-header { background: var(--navy); padding: 1.75rem 2rem; display: flex; align-items: center; gap: 1rem; }
+.prog-level { width: 52px; height: 52px; border-radius: 8px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.4rem; font-weight: 700; color: var(--navy); flex-shrink: 0; }
 .prog-card-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; color: white; }
-.prog-card-sub { font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; font-style: italic; }
+.prog-card-sub { font-size: 0.74rem; color: rgba(255,255,255,0.45); margin-top: 0.2rem; font-style: italic; }
 .prog-card-body { padding: 1.75rem 2rem; }
-.prog-desc-en { font-size: 0.875rem; color: var(--ink); line-height: 1.7; margin-bottom: 0.6rem; }
+.prog-desc-en { font-size: 0.875rem; color: var(--ink); line-height: 1.7; margin-bottom: 0.5rem; }
 .prog-desc-id { font-size: 0.82rem; color: var(--muted); line-height: 1.65; font-style: italic; margin-bottom: 1.25rem; }
 .prog-topics-title { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.75rem; }
 .prog-topics { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
 .prog-topics li { font-size: 0.8rem; color: var(--ink); display: flex; gap: 0.5rem; line-height: 1.4; }
 .prog-topics li::before { content: '→'; color: var(--gold); flex-shrink: 0; font-size: 0.7rem; }
 
-/* S3 Vision box */
-.s3-vision {
-  background: var(--navy); border-radius: 10px; overflow: hidden;
-  display: grid; grid-template-columns: 1fr 1fr;
-}
+/* S3 Vision */
+.s3-vision { background: var(--navy); border-radius: 10px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; }
 .s3-left { padding: 3rem; }
 .s3-tag { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.14em; color: var(--gold-light); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
 .s3-tag::before { content: '◆'; font-size: 0.5rem; }
 .s3-title { font-family: var(--serif); font-size: 2rem; font-weight: 600; color: white; line-height: 1.2; margin-bottom: 0.75rem; }
 .s3-title em { color: var(--gold-light); font-style: italic; }
-.s3-desc-en { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 0.5rem; }
-.s3-desc-id { font-size: 0.83rem; color: rgba(255,255,255,0.4); line-height: 1.65; font-style: italic; margin-bottom: 1.75rem; }
+.s3-desc { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.75; margin-bottom: 1.75rem; }
+.s3-desc em { color: rgba(255,255,255,0.35); font-style: italic; display: block; margin-top: 0.5rem; font-size: 0.82rem; }
 .s3-timeline { display: flex; flex-direction: column; gap: 0.75rem; }
 .s3-step { display: flex; align-items: center; gap: 0.85rem; }
-.s3-step-year { font-family: var(--mono); font-size: 0.7rem; color: var(--gold-light); min-width: 50px; }
-.s3-step-line { flex: 0 0 20px; height: 1px; background: rgba(200,151,58,0.3); }
-.s3-step-text { font-size: 0.78rem; color: rgba(255,255,255,0.6); line-height: 1.3; }
-.s3-step.active .s3-step-text { color: white; font-weight: 500; }
+.s3-step-year { font-family: var(--mono); font-size: 0.7rem; color: rgba(255,255,255,0.4); min-width: 50px; }
 .s3-step.active .s3-step-year { color: var(--gold); }
-.s3-right {
-  background: rgba(200,151,58,0.06); border-left: 1px solid rgba(200,151,58,0.15);
-  padding: 3rem; display: flex; flex-direction: column; justify-content: center;
-}
+.s3-step-line { flex: 0 0 20px; height: 1px; background: rgba(200,151,58,0.25); }
+.s3-step-text { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.3; }
+.s3-step.active .s3-step-text { color: white; font-weight: 500; }
+.s3-right { background: rgba(200,151,58,0.06); border-left: 1px solid rgba(200,151,58,0.15); padding: 3rem; display: flex; flex-direction: column; justify-content: center; }
 .s3-topics-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.25rem; }
-.s3-topics { list-style: none; display: grid; grid-template-columns: 1fr; gap: 0.6rem; }
-.s3-topics li { font-size: 0.82rem; color: rgba(255,255,255,0.65); display: flex; gap: 0.6rem; line-height: 1.4; padding: 0.5rem 0.75rem; border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; transition: border-color 0.2s; }
+.s3-topics { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.s3-topics li { font-size: 0.82rem; color: rgba(255,255,255,0.6); display: flex; gap: 0.6rem; line-height: 1.4; padding: 0.45rem 0.7rem; border: 1px solid rgba(255,255,255,0.06); border-radius: 4px; transition: border-color 0.2s; }
 .s3-topics li:hover { border-color: rgba(200,151,58,0.25); color: rgba(255,255,255,0.85); }
 .s3-topics li::before { content: '→'; color: var(--gold-light); flex-shrink: 0; font-size: 0.7rem; margin-top: 0.1rem; }
 
 /* ── PUBLICATIONS ── */
 #publications { background: white; }
+.pub-filter { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.pf-btn { font-family: var(--mono); font-size: 0.65rem; padding: 0.35rem 0.85rem; border: 1px solid var(--border); background: white; color: var(--ink); border-radius: 3px; cursor: pointer; letter-spacing: 0.05em; transition: all 0.15s; }
+.pf-btn.active, .pf-btn:hover { background: var(--navy); border-color: var(--navy); color: white; }
 .pub-list { display: flex; flex-direction: column; }
 .pub-item { display: grid; grid-template-columns: 72px 1fr auto; gap: 2rem; padding: 1.75rem 0; border-bottom: 1px solid var(--border); align-items: start; }
 .pub-year { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); padding-top: 0.25rem; }
 .pub-type { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.35rem; }
 .pub-title { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 0.35rem; line-height: 1.4; }
 .pub-authors { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.3rem; }
-.pub-venue { font-size: 0.78rem; color: var(--navy); font-style: italic; opacity: 0.8; }
+.pub-venue { font-size: 0.78rem; color: var(--navy); font-style: italic; opacity: 0.75; }
 .pub-actions { display: flex; flex-direction: column; gap: 0.4rem; }
 .pub-btn-link { font-family: var(--mono); font-size: 0.62rem; padding: 0.3rem 0.7rem; border-radius: 3px; text-decoration: none; letter-spacing: 0.05em; transition: all 0.15s; white-space: nowrap; border: 1px solid var(--border); color: var(--ink); }
 .pub-btn-link:hover { background: var(--navy); color: white; border-color: var(--navy); }
 .pub-btn-link.doi { border-color: var(--gold); color: var(--gold); }
 .pub-btn-link.doi:hover { background: var(--gold); color: var(--navy); }
-.pub-filter { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 2rem; }
-.pf-btn { font-family: var(--mono); font-size: 0.65rem; padding: 0.35rem 0.85rem; border: 1px solid var(--border); background: white; color: var(--ink); border-radius: 3px; cursor: pointer; letter-spacing: 0.05em; transition: all 0.15s; }
-.pf-btn.active, .pf-btn:hover { background: var(--navy); border-color: var(--navy); color: white; }
 
 /* ── TEAM ── */
 #team { background: var(--cream); }
-.team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
-.team-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 2rem 1.5rem; text-align: center; transition: all 0.2s; position: relative; overflow: hidden; }
+.team-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-bottom: 3rem; align-items: end; }
+.faculty-label { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-gold); }
+.team-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-bottom: 3rem; }
+.team-card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem 1.25rem; text-align: center; transition: all 0.2s; position: relative; overflow: hidden; }
 .team-card:hover { box-shadow: 0 8px 30px rgba(11,29,53,0.1); transform: translateY(-2px); }
-.team-card.pi { border-color: var(--gold); }
-.team-card.pi::before { content: 'PI'; position: absolute; top: 0.75rem; right: 0.75rem; font-family: var(--mono); font-size: 0.58rem; background: var(--gold); color: var(--navy); padding: 0.15rem 0.45rem; border-radius: 2px; font-weight: 700; letter-spacing: 0.06em; }
-.team-avatar { width: 76px; height: 76px; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: white; background: linear-gradient(135deg, var(--navy-light), var(--navy)); border: 3px solid var(--gold-pale); }
-.team-card.pi .team-avatar { background: linear-gradient(135deg, var(--gold), #a07428); }
-.team-name { font-family: var(--serif); font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.2rem; }
-.team-role { font-size: 0.72rem; color: var(--gold); margin-bottom: 0.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
-.team-focus { font-size: 0.77rem; color: var(--muted); line-height: 1.5; }
+.team-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transition: transform 0.2s; }
+.team-card:hover::after { transform: scaleX(1); }
+.team-card.head { border-color: var(--gold); grid-column: span 2; display: flex; flex-direction: row; text-align: left; gap: 1.5rem; align-items: center; }
+.team-card.head::before { content: 'HEAD'; position: absolute; top: 0.75rem; right: 0.75rem; font-family: var(--mono); font-size: 0.58rem; background: var(--gold); color: var(--navy); padding: 0.15rem 0.45rem; border-radius: 2px; font-weight: 700; letter-spacing: 0.08em; }
+.team-avatar { width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.4rem; font-weight: 700; color: white; background: linear-gradient(135deg, var(--navy-light), var(--navy)); border: 3px solid var(--gold-pale); flex-shrink: 0; }
+.team-card.head .team-avatar { width: 80px; height: 80px; background: linear-gradient(135deg, var(--gold), #a07428); border-color: rgba(200,151,58,0.3); margin: 0; }
+.team-name { font-family: var(--serif); font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 0.15rem; line-height: 1.3; }
+.team-card.head .team-name { font-size: 1.1rem; }
+.team-degree { font-size: 0.68rem; color: rgba(11,29,53,0.4); margin-bottom: 0.25rem; font-family: var(--mono); line-height: 1.3; }
+.team-role { font-size: 0.7rem; color: var(--gold); margin-bottom: 0.4rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.team-prodi { font-size: 0.72rem; color: var(--muted); margin-bottom: 0.4rem; font-style: italic; }
+.team-focus { font-size: 0.72rem; color: var(--muted); line-height: 1.5; }
+.team-scholar { display: inline-flex; align-items: center; gap: 0.35rem; font-family: var(--mono); font-size: 0.6rem; color: var(--gold); text-decoration: none; margin-top: 0.6rem; letter-spacing: 0.04em; }
+.team-scholar:hover { text-decoration: underline; }
+
+/* Faculty background colors by prodi */
+.prodi-elektro .team-avatar { background: linear-gradient(135deg, #1E3A5F, #0B1D35); }
+.prodi-informatika .team-avatar { background: linear-gradient(135deg, #1a4a2e, #0d2e1a); }
+.prodi-mesin .team-avatar { background: linear-gradient(135deg, #4a2010, #2e120a); }
+.prodi-kedokteran .team-avatar { background: linear-gradient(135deg, #6b1a1a, #3d0f0f); }
+.prodi-keperawatan .team-avatar { background: linear-gradient(135deg, #1a3a5c, #0d2040); }
+.prodi-pertanian .team-avatar { background: linear-gradient(135deg, #2e4a1a, #1a2e0d); }
+
+.prodi-legend { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+.prodi-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--muted); }
+.prodi-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
 /* ── CONTACT ── */
 #contact { background: var(--navy); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
 .contact-info-item { display: flex; gap: 1rem; margin-bottom: 1.75rem; align-items: flex-start; }
-.contact-icon { width: 42px; height: 42px; background: rgba(200,151,58,0.15); border: 1px solid var(--border-gold); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.contact-icon { width: 42px; height: 42px; background: rgba(200,151,58,0.12); border: 1px solid var(--border-gold); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
 .contact-label { font-family: var(--mono); font-size: 0.62rem; color: var(--gold-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
-.contact-value { font-size: 0.875rem; color: rgba(255,255,255,0.8); font-weight: 500; }
+.contact-value { font-size: 0.875rem; color: rgba(255,255,255,0.8); font-weight: 500; line-height: 1.5; }
 .contact-value a { color: var(--gold-light); text-decoration: none; }
 .contact-value a:hover { text-decoration: underline; }
 .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
-.form-label { font-family: var(--mono); font-size: 0.62rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; text-transform: uppercase; }
-.form-label span { font-style: italic; color: rgba(255,255,255,0.3); font-family: var(--sans); letter-spacing: 0; font-size: 0.68rem; }
+.form-label { font-family: var(--mono); font-size: 0.62rem; color: rgba(255,255,255,0.45); letter-spacing: 0.08em; text-transform: uppercase; }
+.form-label span { font-style: italic; color: rgba(255,255,255,0.25); font-family: var(--sans); letter-spacing: 0; font-size: 0.68rem; }
 .form-control { padding: 0.75rem 1rem; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); font-family: var(--sans); font-size: 0.875rem; color: white; border-radius: 4px; outline: none; transition: border-color 0.15s; width: 100%; }
 .form-control:focus { border-color: var(--gold); }
-.form-control::placeholder { color: rgba(255,255,255,0.25); }
+.form-control::placeholder { color: rgba(255,255,255,0.22); }
 textarea.form-control { min-height: 120px; resize: vertical; }
-.btn-submit { background: var(--gold); color: var(--navy); padding: 0.875rem 2.5rem; border: none; font-family: var(--sans); font-size: 0.875rem; font-weight: 700; border-radius: 4px; cursor: pointer; width: 100%; transition: all 0.2s; letter-spacing: 0.03em; }
-.btn-submit:hover { background: var(--gold-light); box-shadow: 0 4px 20px rgba(200,151,58,0.35); }
+.btn-submit { background: var(--gold); color: var(--navy); padding: 0.875rem 2rem; border: none; font-family: var(--sans); font-size: 0.875rem; font-weight: 700; border-radius: 4px; cursor: pointer; width: 100%; transition: all 0.2s; letter-spacing: 0.03em; }
+.btn-submit:hover { background: var(--gold-light); }
 
 /* ── FOOTER ── */
 footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; border-top: 1px solid rgba(200,151,58,0.1); }
-.footer-brand .footer-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: white; margin-bottom: 0.2rem; }
-.footer-brand .footer-sub { font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+.footer-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 600; color: white; margin-bottom: 0.2rem; }
+.footer-sub { font-size: 0.75rem; color: rgba(255,255,255,0.35); }
 .footer-links { display: flex; gap: 1.5rem; }
 .footer-links a { font-family: var(--mono); font-size: 0.65rem; color: rgba(255,255,255,0.35); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
 .footer-links a:hover { color: var(--gold-light); }
 .footer-copy { font-family: var(--mono); font-size: 0.62rem; color: rgba(255,255,255,0.2); }
 
-/* ── DIVIDER ── */
-.gold-rule { border: none; border-top: 1px solid var(--border-gold); margin: 0; }
-
 /* ── ANIMATIONS ── */
-.fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
 .fade-up.visible { opacity: 1; transform: none; }
-.fade-up:nth-child(2) { transition-delay: 0.08s; }
-.fade-up:nth-child(3) { transition-delay: 0.16s; }
-.fade-up:nth-child(4) { transition-delay: 0.24s; }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 960px) {
+@media (max-width: 1024px) {
+  .team-grid { grid-template-columns: repeat(3, 1fr); }
+  .team-card.head { grid-column: span 3; }
+}
+@media (max-width: 900px) {
   nav { padding: 0 1.5rem; }
   .nav-links { display: none; }
-  .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+  #hero .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
   .hero-stats { grid-template-columns: repeat(2, 1fr); }
   .research-grid, .prog-grid, .s3-vision, .contact-grid { grid-template-columns: 1fr; }
   .rm-grid { grid-template-columns: repeat(2, 1fr); }
-  .team-grid { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-card.head { grid-column: span 2; }
   .container { padding: 0 1.5rem; }
   section { padding: 4rem 0; }
 }
@@ -443,35 +350,35 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
   <div class="hero-bg-glow"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow">Universitas Jember · Teknik Elektro</div>
+      <div class="hero-eyebrow">Universitas Jember · Gedung CDAST Lt. 7</div>
       <h1 class="hero-title">Intelligent<br>Systems &<br><span class="gold">Robotics</span><br>Laboratory</h1>
       <p class="hero-subtitle">Lab Sistem Cerdas dan Robotika</p>
       <p class="hero-desc">
-        A research laboratory at the <strong>Department of Electrical Engineering, UNEJ</strong> — advancing intelligent control, agro-industrial robotics, and smart instrumentation systems for real-world impact.
-        <br><br>
-        <em style="color:rgba(255,255,255,0.4);font-style:italic;">Laboratorium riset di Teknik Elektro UNEJ yang mengembangkan kendali cerdas, robotika agro-industri, dan sistem instrumentasi untuk dampak nyata.</em>
+        An <strong>interdisciplinary research laboratory</strong> at Universitas Jember, uniting researchers from Electrical Engineering, Informatics, Mechanical Engineering, Nursing, Medicine, and Agriculture — located at <strong>Gedung CDAST, 7th Floor, UNEJ</strong>.
+        <em>Lab riset lintas disiplin di UNEJ yang menyatukan peneliti dari Teknik Elektro, Informatika, Teknik Mesin, Keperawatan, Kedokteran, dan Pertanian.</em>
       </p>
       <div class="hero-actions">
         <a href="#research" class="btn btn-gold">Explore Research →</a>
-        <a href="#program" class="btn btn-outline-white">Academic Programs</a>
+        <a href="#team" class="btn btn-outline-white">Meet the Team</a>
       </div>
     </div>
     <div class="hero-card">
       <div class="hero-card-photo">
-        <span class="hero-photo-label">Head of Lab</span>
+        <span class="hero-photo-label">HEAD OF LAB</span>
         <div class="hero-photo-icon">🎓</div>
       </div>
       <div class="hero-card-body">
-        <p class="hero-pi-name">Prof. Ir. Khairul Anam, S.T., M.T., Ph.D., IPU., ASEAN. Eng.</p>
-        <p class="hero-pi-title">Profesor · Instrumentation & Control</p>
+        <p class="hero-pi-name">Khairul Anam</p>
+        <p class="hero-pi-degree">Ir., S.T., M.T., Ph.D., IPU., ASEAN Eng.</p>
+        <p class="hero-pi-title">Profesor · Teknik Elektro UNEJ</p>
         <div class="hero-pi-links">
           <a href="https://khairul.staff.unej.ac.id" target="_blank" class="pi-link">
             <span class="pi-link-icon">🌐</span> khairul.staff.unej.ac.id
           </a>
-          <a href="#" class="pi-link">
+          <a href="https://scholar.google.co.id/citations?user=OryG4o4AAAAJ" target="_blank" class="pi-link">
             <span class="pi-link-icon">🎓</span> Google Scholar Profile
           </a>
-          <a href="#" class="pi-link">
+          <a href="https://sinta.kemdiktisaintek.go.id" target="_blank" class="pi-link">
             <span class="pi-link-icon">📊</span> SINTA Profile
           </a>
           <a href="mailto:khairul@unej.ac.id" class="pi-link">
@@ -485,7 +392,7 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
     <div class="hero-stat">
       <div class="hero-stat-num">10+</div>
       <div class="hero-stat-en">Active Members</div>
-      <div class="hero-stat-id">Anggota aktif</div>
+      <div class="hero-stat-id">Anggota aktif lintas prodi</div>
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num">20+</div>
@@ -494,8 +401,8 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num">6</div>
-      <div class="hero-stat-en">Research Themes</div>
-      <div class="hero-stat-id">Tema riset unggulan</div>
+      <div class="hero-stat-en">Disciplines</div>
+      <div class="hero-stat-id">Prodi yang terlibat</div>
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num">S1–S2</div>
@@ -512,55 +419,51 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
   <div class="container">
     <div class="section-header fade-up">
       <div class="section-eyebrow">Research Areas / Bidang Riset</div>
-      <h2 class="section-title">Six Pillars of Inquiry<br><em style="font-style:italic;color:var(--muted);font-size:0.7em;">Enam Pilar Penelitian Unggulan</em></h2>
-      <p class="section-lead">From foundational control theory to applied agro-industrial systems — our research targets real challenges across the intelligent systems spectrum.<br><em style="font-style:italic;opacity:0.7;">Dari teori kendali dasar hingga sistem agro-industri terapan.</em></p>
+      <h2 class="section-title">Six Pillars of Inquiry</h2>
+      <p class="section-lead">From intelligent control and agro-robotics to biosignal analysis and digital agriculture — our research bridges engineering, health, and food systems.
+        <em>Dari kendali cerdas dan agro-robotika hingga analisis biosignal dan pertanian digital.</em>
+      </p>
     </div>
     <div class="research-grid fade-up">
       <div class="rc">
-        <p class="rc-num">01</p>
-        <div class="rc-icon">🤖</div>
+        <p class="rc-num">01</p><div class="rc-icon">🤖</div>
         <h3 class="rc-title">Agro-Industrial Robotics</h3>
         <p class="rc-en">Design, kinematics, and control of robotic systems for agriculture — harvesting, sorting, and precision spraying robots.</p>
         <p class="rc-id">Desain, kinematika, dan kendali robot untuk pertanian agro-industri Indonesia.</p>
         <div class="tags"><span class="tag">Kinematics</span><span class="tag">Path Planning</span><span class="tag">Manipulation</span></div>
       </div>
       <div class="rc">
-        <p class="rc-num">02</p>
-        <div class="rc-icon">🧠</div>
+        <p class="rc-num">02</p><div class="rc-icon">🧠</div>
         <h3 class="rc-title">Intelligent Control Systems</h3>
         <p class="rc-en">AI-augmented control including fuzzy logic, neural network controllers, and adaptive systems for nonlinear dynamics.</p>
         <p class="rc-id">Sistem kendali berbasis AI: fuzzy, neural network, dan adaptif untuk dinamika nonlinier.</p>
         <div class="tags"><span class="tag">Fuzzy PID</span><span class="tag">Adaptive</span><span class="tag">RL Control</span></div>
       </div>
       <div class="rc">
-        <p class="rc-num">03</p>
-        <div class="rc-icon">👁️</div>
+        <p class="rc-num">03</p><div class="rc-icon">👁️</div>
         <h3 class="rc-title">Machine Perception</h3>
         <p class="rc-en">Computer vision and sensor fusion for agricultural monitoring — disease detection, yield estimation, and navigation.</p>
         <p class="rc-id">Visi komputer dan sensor fusion untuk monitoring pertanian cerdas berbasis AI.</p>
         <div class="tags"><span class="tag">Deep Learning</span><span class="tag">Sensor Fusion</span><span class="tag">Edge AI</span></div>
       </div>
       <div class="rc">
-        <p class="rc-num">04</p>
-        <div class="rc-icon">📡</div>
-        <h3 class="rc-title">Smart Instrumentation</h3>
-        <p class="rc-en">IoT-enabled sensor networks and precision measurement systems for environmental and agricultural data acquisition.</p>
-        <p class="rc-id">Jaringan sensor IoT dan instrumentasi presisi untuk akuisisi data pertanian.</p>
-        <div class="tags"><span class="tag">IoT</span><span class="tag">MEMS</span><span class="tag">Signal Proc.</span></div>
+        <p class="rc-num">04</p><div class="rc-icon">📡</div>
+        <h3 class="rc-title">Smart Instrumentation & IoT</h3>
+        <p class="rc-en">IoT-enabled sensor networks, wireless communication, and precision measurement for environmental and agricultural data.</p>
+        <p class="rc-id">Jaringan sensor IoT, komunikasi nirkabel, dan instrumentasi presisi untuk data pertanian.</p>
+        <div class="tags"><span class="tag">IoT</span><span class="tag">Edge AI</span><span class="tag">Wireless</span></div>
       </div>
       <div class="rc">
-        <p class="rc-num">05</p>
-        <div class="rc-icon">🔬</div>
-        <h3 class="rc-title">Efficient Deep Learning</h3>
-        <p class="rc-en">Model compression, sparse networks via Lottery Ticket Hypothesis, and few-shot learning for resource-constrained AI.</p>
-        <p class="rc-id">Kompresi model, jaringan sparse (LTH), dan few-shot learning untuk AI hemat sumber daya.</p>
-        <div class="tags"><span class="tag">LTH / Pruning</span><span class="tag">Few-Shot</span><span class="tag">Meta-Learning</span></div>
+        <p class="rc-num">05</p><div class="rc-icon">🔬</div>
+        <h3 class="rc-title">Biosignal & Assistive Tech</h3>
+        <p class="rc-en">Brain-computer interfaces, myoelectric control, and biosignal pattern recognition for assistive devices in health and rehabilitation.</p>
+        <p class="rc-id">BCI, kendali mioelektrik, dan pengenalan pola biosignal untuk alat bantu rehabilitasi.</p>
+        <div class="tags"><span class="tag">BCI</span><span class="tag">Myoelectric</span><span class="tag">Rehab Tech</span></div>
       </div>
       <div class="rc">
-        <p class="rc-num">06</p>
-        <div class="rc-icon">🌾</div>
+        <p class="rc-num">06</p><div class="rc-icon">🌾</div>
         <h3 class="rc-title">Digital Agriculture Systems</h3>
-        <p class="rc-en">End-to-end integrated systems combining robotics, AI, and IoT for smart farming at agro-industrial scale.</p>
+        <p class="rc-en">End-to-end integrated systems combining robotics, AI, and IoT for smart farming at agro-industrial scale in Indonesia.</p>
         <p class="rc-id">Sistem terpadu robotika, AI, dan IoT untuk smart farming skala agro-industri nasional.</p>
         <div class="tags"><span class="tag">Digital Twin</span><span class="tag">SCADA</span><span class="tag">DSS</span></div>
       </div>
@@ -574,27 +477,25 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
 <section id="roadmap">
   <div class="container">
     <div class="section-header fade-up">
-      <div class="section-eyebrow" style="color:var(--gold-light);">Lab Roadmap</div>
-      <h2 class="section-title section-title-white">Strategic Development<br><em style="font-style:italic;color:rgba(255,255,255,0.35);font-size:0.65em;">Peta Jalan Pengembangan Lab 2022–2030</em></h2>
-      <p class="section-lead section-lead-white">A phased growth plan from foundational infrastructure to a nationally recognized center of excellence in intelligent agro-industrial systems.</p>
+      <div class="section-eyebrow light">Lab Roadmap</div>
+      <h2 class="section-title white">Strategic Development<br><span style="font-style:italic;color:rgba(255,255,255,0.3);font-size:0.65em;">Peta Jalan Pengembangan Lab 2022–2030</span></h2>
+      <p class="section-lead white">A phased plan from foundational infrastructure to a nationally recognized center of excellence in intelligent agro-industrial systems.</p>
     </div>
     <div class="rm-grid fade-up">
       <div class="rm-card">
-        <p class="rm-phase-tag">PHASE 01</p>
-        <p class="rm-years">2022–23</p>
+        <p class="rm-phase-tag">PHASE 01</p><p class="rm-years">2022–23</p>
         <span class="rm-badge done">✓ Completed</span>
         <h3 class="rm-title">Foundation & Infrastructure</h3>
         <p class="rm-desc">Membangun identitas lab, pengadaan peralatan inti, dan kompetensi riset awal.</p>
         <ul class="rm-items">
-          <li>Lab facility & equipment setup</li>
+          <li>Lab facility di Gedung CDAST Lt. 7</li>
           <li>Robot prototype pertama</li>
           <li>Publikasi awal (S1/S2 level)</li>
           <li>Pendanaan riset internal UNEJ</li>
         </ul>
       </div>
       <div class="rm-card active">
-        <p class="rm-phase-tag">PHASE 02</p>
-        <p class="rm-years">2024–25</p>
+        <p class="rm-phase-tag">PHASE 02</p><p class="rm-years">2024–25</p>
         <span class="rm-badge ongoing">⬤ Ongoing</span>
         <h3 class="rm-title">Research Growth & Collaboration</h3>
         <p class="rm-desc">Meningkatkan output publikasi dan membangun kolaborasi strategis nasional.</p>
@@ -606,21 +507,19 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
         </ul>
       </div>
       <div class="rm-card">
-        <p class="rm-phase-tag">PHASE 03</p>
-        <p class="rm-years">2026–28</p>
+        <p class="rm-phase-tag">PHASE 03</p><p class="rm-years">2026–28</p>
         <span class="rm-badge planned">Planned</span>
         <h3 class="rm-title">S3 Launch & International Reach</h3>
         <p class="rm-desc">Membuka program doktoral dan mencapai visibilitas internasional.</p>
         <ul class="rm-items">
-          <li>Program S3 Teknik Elektro</li>
+          <li>Program S3 Teknik Elektro UNEJ</li>
           <li>IEEE/Scopus Q1–Q2 papers</li>
           <li>Konferensi internasional</li>
           <li>Student exchange program</li>
         </ul>
       </div>
       <div class="rm-card">
-        <p class="rm-phase-tag">PHASE 04</p>
-        <p class="rm-years">2028–30</p>
+        <p class="rm-phase-tag">PHASE 04</p><p class="rm-years">2028–30</p>
         <span class="rm-badge planned">Planned</span>
         <h3 class="rm-title">Center of Excellence (PUI)</h3>
         <p class="rm-desc">Diakui sebagai Pusat Unggulan Iptek dengan teknologi terdeployment.</p>
@@ -635,69 +534,64 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
   </div>
 </section>
 
-<!-- ── ACADEMIC PROGRAMS ── -->
+<!-- ── PROGRAMS ── -->
 <section id="program">
   <div class="container">
     <div class="section-header fade-up">
       <div class="section-eyebrow">Academic Programs / Program Studi</div>
-      <h2 class="section-title">Study & Research<br>Opportunities</h2>
-      <p class="section-lead">ISR Lab actively supports undergraduate and graduate research. Our doctoral program is on the horizon — join us now and grow with the lab.<br><em style="font-style:italic;opacity:0.65;">ISR Lab mendukung riset S1 dan S2. Program S3 sedang dalam persiapan — bergabunglah sekarang dan berkembang bersama lab.</em></p>
+      <h2 class="section-title">Study & Research Opportunities</h2>
+      <p class="section-lead">ISR Lab actively supports S1 and S2 research. Our doctoral program is on the horizon — join us now and grow with the lab.
+        <em>ISR Lab mendukung riset S1 dan S2. Program S3 sedang dalam persiapan — bergabunglah sekarang.</em>
+      </p>
     </div>
     <div class="prog-grid fade-up">
       <div class="prog-card">
         <div class="prog-card-header">
           <div class="prog-level">S1</div>
-          <div>
-            <p class="prog-card-title">Sarjana Teknik Elektro</p>
-            <p class="prog-card-sub">Bachelor of Electrical Engineering</p>
-          </div>
+          <div><p class="prog-card-title">Sarjana / Bachelor</p><p class="prog-card-sub">Undergraduate Research Track</p></div>
         </div>
         <div class="prog-card-body">
-          <p class="prog-desc-en">Undergraduate students can join ISR Lab as research assistants, working on lab projects under faculty supervision. Thesis research aligned with lab themes is strongly encouraged.</p>
-          <p class="prog-desc-id">Mahasiswa S1 dapat bergabung sebagai asisten riset, mengerjakan proyek lab di bawah bimbingan dosen. Penelitian skripsi yang selaras dengan tema lab sangat dianjurkan.</p>
+          <p class="prog-desc-en">Undergraduate students from any faculty can join ISR Lab as research assistants, contributing to active projects under faculty supervision. Skripsi aligned with lab themes is strongly encouraged.</p>
+          <p class="prog-desc-id">Mahasiswa S1 dari berbagai prodi dapat bergabung sebagai asisten riset di bawah bimbingan dosen. Penelitian skripsi yang selaras dengan tema lab sangat dianjurkan.</p>
           <p class="prog-topics-title">Available Research Tracks</p>
           <ul class="prog-topics">
             <li>Robotic arm design & forward kinematics</li>
             <li>IoT-based smart sensing systems</li>
             <li>Computer vision for agricultural inspection</li>
-            <li>Embedded systems & control implementation</li>
+            <li>Biosignal processing for assistive devices</li>
           </ul>
         </div>
       </div>
       <div class="prog-card">
         <div class="prog-card-header">
           <div class="prog-level">S2</div>
-          <div>
-            <p class="prog-card-title">Magister Teknik Elektro</p>
-            <p class="prog-card-sub">Master of Electrical Engineering</p>
-          </div>
+          <div><p class="prog-card-title">Magister / Master</p><p class="prog-card-sub">Graduate Research Program</p></div>
         </div>
         <div class="prog-card-body">
-          <p class="prog-desc-en">Graduate students are full lab members with access to all research facilities, publication support, and potential industry collaborations. Thesis topics are co-developed with the PI.</p>
-          <p class="prog-desc-id">Mahasiswa S2 adalah anggota penuh lab dengan akses fasilitas riset lengkap, dukungan publikasi, dan kolaborasi industri. Topik tesis dikembangkan bersama PI.</p>
+          <p class="prog-desc-en">Graduate students are full lab members with access to all research facilities, publication support, and industry collaboration opportunities. Thesis topics are co-developed with the Head of Lab.</p>
+          <p class="prog-desc-id">Mahasiswa S2 adalah anggota penuh lab dengan akses fasilitas riset lengkap, dukungan publikasi, dan kolaborasi industri. Topik tesis dikembangkan bersama kepala lab.</p>
           <p class="prog-topics-title">Featured Thesis Topics</p>
           <ul class="prog-topics">
             <li>Adaptive fuzzy control for agro-robotic systems</li>
             <li>Efficient CNN for edge agricultural AI</li>
             <li>Multi-sensor fusion for precision farming</li>
-            <li>Digital twin for industrial plant control</li>
+            <li>BCI-based assistive device for rehabilitation</li>
           </ul>
         </div>
       </div>
     </div>
-
-    <!-- S3 Vision -->
     <div class="s3-vision fade-up">
       <div class="s3-left">
-        <p class="s3-tag">Vision / Visi ke Depan</p>
+        <p class="s3-tag">Visi ke Depan / Future Vision</p>
         <h3 class="s3-title">Doctoral Program<br><em>S3 in Sight</em></h3>
-        <p class="s3-desc-en">ISR Lab is actively building the foundation for a doctoral program in Electrical Engineering at UNEJ. Our roadmap targets S3 launch by 2026–2028, aligned with national research excellence standards.</p>
-        <p class="s3-desc-id">ISR Lab sedang membangun fondasi program doktoral Teknik Elektro UNEJ. Peta jalan kami menargetkan pembukaan S3 pada 2026–2028, selaras dengan standar riset unggulan nasional.</p>
+        <p class="s3-desc">ISR Lab is actively building the foundation for a doctoral program in Electrical Engineering at UNEJ. Our roadmap targets S3 launch by 2026–2028, aligned with national research excellence standards.
+          <em>ISR Lab sedang membangun fondasi program doktoral Teknik Elektro UNEJ, menargetkan pembukaan S3 pada 2026–2028.</em>
+        </p>
         <div class="s3-timeline">
           <div class="s3-step active">
             <span class="s3-step-year">2024–25</span>
             <div class="s3-step-line"></div>
-            <span class="s3-step-text">Strengthening S2 research output & publication track record</span>
+            <span class="s3-step-text">Strengthening S2 research output & publication record</span>
           </div>
           <div class="s3-step">
             <span class="s3-step-year">2025–26</span>
@@ -718,10 +612,10 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
           <li>Sparse Networks via Lottery Ticket Hypothesis</li>
           <li>Few-Shot Learning for Crop Disease Detection</li>
           <li>Meta-Learning Adaptive Controllers</li>
-          <li>Multi-Modal Sensor Fusion (Precision Agriculture)</li>
-          <li>Continual Learning for Dynamic Environments</li>
-          <li>Digital Twin for Agro-Industrial Control</li>
-          <li>Human-Robot Collaboration in Farming</li>
+          <li>Multi-Modal Sensor Fusion in Precision Agriculture</li>
+          <li>BCI & Myoelectric for Advanced Prosthetics</li>
+          <li>Digital Twin for Agro-Industrial Control Systems</li>
+          <li>Human-Robot Collaboration in Agricultural Tasks</li>
         </ul>
       </div>
     </div>
@@ -737,9 +631,9 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
       <div>
         <div class="section-eyebrow">Publications / Publikasi</div>
         <h2 class="section-title">Research Output</h2>
-        <p class="section-lead">Peer-reviewed contributions from ISR Lab across control systems, robotics, and intelligent systems journals and conferences.</p>
+        <p class="section-lead">Peer-reviewed contributions from ISR Lab across robotics, control systems, biosignal, and intelligent systems.</p>
       </div>
-      <a href="#" class="btn btn-gold" style="white-space:nowrap;">Google Scholar →</a>
+      <a href="https://scholar.google.co.id/citations?user=OryG4o4AAAAJ" target="_blank" class="btn btn-gold">Google Scholar →</a>
     </div>
     <div class="pub-filter fade-up">
       <button class="pf-btn active">All</button>
@@ -747,47 +641,37 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
       <button class="pf-btn">Conference</button>
       <button class="pf-btn">2025</button>
       <button class="pf-btn">2024</button>
-      <button class="pf-btn">2023</button>
     </div>
     <div class="pub-list fade-up">
       <div class="pub-item">
         <span class="pub-year">2025</span>
         <div>
           <p class="pub-type">Journal · Scopus</p>
-          <p class="pub-title">Tambahkan judul publikasi terbaru Anda di sini</p>
-          <p class="pub-authors">Khairul, et al. — ISR Lab, Universitas Jember</p>
+          <p class="pub-title">Tambahkan judul publikasi terbaru di sini</p>
+          <p class="pub-authors">Khairul Anam, et al. — ISR Lab, Universitas Jember</p>
           <p class="pub-venue">Nama Jurnal · Publisher · Quartile</p>
         </div>
-        <div class="pub-actions">
-          <a href="#" class="pub-btn-link doi">DOI</a>
-          <a href="#" class="pub-btn-link">PDF</a>
-        </div>
+        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a><a href="#" class="pub-btn-link">PDF</a></div>
       </div>
       <div class="pub-item">
         <span class="pub-year">2024</span>
         <div>
-          <p class="pub-type">Journal · Sinta 2</p>
+          <p class="pub-type">Journal · Scopus Q2</p>
           <p class="pub-title">Adaptive Fuzzy-PID Control for 3-DOF Agro-Industrial Robot Arm with Variable Payload</p>
-          <p class="pub-authors">Khairul, et al. — ISR Lab, Universitas Jember</p>
+          <p class="pub-authors">Khairul Anam, et al. — ISR Lab, Universitas Jember</p>
           <p class="pub-venue">International Journal of Advanced Robotic Systems · SAGE</p>
         </div>
-        <div class="pub-actions">
-          <a href="#" class="pub-btn-link doi">DOI</a>
-          <a href="#" class="pub-btn-link">PDF</a>
-        </div>
+        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a><a href="#" class="pub-btn-link">PDF</a></div>
       </div>
       <div class="pub-item">
         <span class="pub-year">2024</span>
         <div>
           <p class="pub-type">Conference · IEEE</p>
           <p class="pub-title">Real-time Coffee Bean Defect Detection using Lightweight CNN on Edge Devices</p>
-          <p class="pub-authors">Khairul, et al. — ISR Lab, Universitas Jember</p>
+          <p class="pub-authors">Khairul Anam, et al. — ISR Lab, Universitas Jember</p>
           <p class="pub-venue">International Conference on Electrical Engineering (ICEE) 2024</p>
         </div>
-        <div class="pub-actions">
-          <a href="#" class="pub-btn-link doi">DOI</a>
-          <a href="#" class="pub-btn-link">Slides</a>
-        </div>
+        <div class="pub-actions"><a href="#" class="pub-btn-link doi">DOI</a><a href="#" class="pub-btn-link">Slides</a></div>
       </div>
     </div>
   </div>
@@ -796,38 +680,141 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
 <hr class="gold-rule">
 
 <!-- ── TEAM ── -->
-<section id="team" style="background:white;">
+<section id="team">
   <div class="container">
     <div class="section-header fade-up">
       <div class="section-eyebrow">The Team / Tim Peneliti</div>
-      <h2 class="section-title">Faculty & Lab Members</h2>
-      <p class="section-lead">A dedicated group of researchers and students advancing intelligent systems for agro-industrial applications.<br><em style="font-style:italic;opacity:0.65;">Tim dosen dan mahasiswa yang mengembangkan sistem cerdas untuk aplikasi agro-industri.</em></p>
+      <h2 class="section-title">An Interdisciplinary Team</h2>
+      <p class="section-lead">Researchers from six disciplines across Universitas Jember — united by a shared mission to advance intelligent systems for health, agriculture, and industry.
+        <em>Peneliti dari enam prodi di UNEJ, bersatu untuk mengembangkan sistem cerdas bagi kesehatan, pertanian, dan industri.</em>
+      </p>
     </div>
+
+    <p class="faculty-label fade-up">Faculty Members / Anggota Dosen</p>
     <div class="team-grid fade-up">
-      <div class="team-card pi">
-        <div class="team-avatar">K</div>
-        <h3 class="team-name">Dr. Khairul Anam</h3>
-        <p class="team-role">Principal Investigator</p>
-        <p class="team-focus">Intelligent Control · Agro-Robotics · Instrumentation & Control</p>
+
+      <!-- HEAD -->
+      <div class="team-card head prodi-elektro">
+        <div class="team-avatar">KA</div>
+        <div>
+          <h3 class="team-name">Khairul Anam</h3>
+          <p class="team-degree">Ir., S.T., M.T., Ph.D., IPU., ASEAN Eng.</p>
+          <p class="team-role">Head of Lab · Profesor</p>
+          <p class="team-prodi">Teknik Elektro</p>
+          <p class="team-focus">Robot · Intelligent Control · Deep Learning · BCI · Myoelectric Control</p>
+          <a href="https://scholar.google.co.id/citations?user=OryG4o4AAAAJ" target="_blank" class="team-scholar">🎓 Google Scholar</a>
+        </div>
       </div>
-      <div class="team-card">
-        <div class="team-avatar">D</div>
-        <h3 class="team-name">Dosen Peneliti A</h3>
-        <p class="team-role">Co-Investigator</p>
-        <p class="team-focus">Machine Vision · Deep Learning Applications</p>
+
+      <!-- Setya -->
+      <div class="team-card prodi-elektro">
+        <div class="team-avatar">SP</div>
+        <h3 class="team-name">Setya Widyawan Prakosa</h3>
+        <p class="team-degree">Ph.D</p>
+        <p class="team-role">Researcher</p>
+        <p class="team-prodi">Teknik Elektro</p>
+        <p class="team-focus">Signal Processing · AI · IoT · Wireless · Edge AI</p>
+        <a href="https://scholar.google.com/citations?user=SuMrE5kAAAAJ" target="_blank" class="team-scholar">🎓 Google Scholar</a>
       </div>
-      <div class="team-card">
-        <div class="team-avatar">D</div>
-        <h3 class="team-name">Dosen Peneliti B</h3>
-        <p class="team-role">Co-Investigator</p>
-        <p class="team-focus">IoT · Smart Sensing · Embedded Systems</p>
+
+      <!-- Agung -->
+      <div class="team-card prodi-elektro">
+        <div class="team-avatar">MA</div>
+        <h3 class="team-name">Mohamad Agung Prawira Negara</h3>
+        <p class="team-degree">Dr., S.T., M.T.</p>
+        <p class="team-role">Researcher</p>
+        <p class="team-prodi">Teknik Elektro</p>
+        <p class="team-focus">Control System · Electrical Engineering</p>
+        <a href="https://scholar.google.com/citations?user=XSaHTXEAAAAJ" target="_blank" class="team-scholar">🎓 Google Scholar</a>
       </div>
-      <div class="team-card">
-        <div class="team-avatar" style="font-size:1.2rem;">+</div>
-        <h3 class="team-name">Join Our Lab</h3>
-        <p class="team-role">S1 / S2 Researcher</p>
-        <p class="team-focus">Kami terbuka untuk mahasiswa S1 & S2 yang ingin terlibat dalam riset. <a href="#contact" style="color:var(--gold);">Hubungi kami →</a></p>
+
+      <!-- Gramandha -->
+      <div class="team-card prodi-elektro">
+        <div class="team-avatar">GW</div>
+        <h3 class="team-name">Gramandha Wega Intyanto</h3>
+        <p class="team-degree">S.T., M.T.</p>
+        <p class="team-role">Researcher</p>
+        <p class="team-prodi">Teknik Elektro</p>
+        <p class="team-focus">Robotics · Machine Vision · AI · Software Usability</p>
+        <a href="https://scholar.google.com/citations?user=vrmh4RoAAAAJ" target="_blank" class="team-scholar">🎓 Google Scholar</a>
       </div>
+
+      <!-- Dwiretno -->
+      <div class="team-card prodi-informatika">
+        <div class="team-avatar">DI</div>
+        <h3 class="team-name">Dwiretno Istiyadi Swasono</h3>
+        <p class="team-degree">Dr., S.T., M.Kom</p>
+        <p class="team-role">Researcher</p>
+        <p class="team-prodi">Sistem Informasi / Informatika</p>
+        <p class="team-focus">Artificial Intelligence · Image Processing · Embedded System & IoT</p>
+        <a href="https://scholar.google.com/citations?user=w38T6W4AAAAJ" target="_blank" class="team-scholar">🎓 Google Scholar</a>
+      </div>
+
+      <!-- Fahrur -->
+      <div class="team-card prodi-mesin">
+        <div class="team-avatar">FR</div>
+        <h3 class="team-name">M Fahrur Rozy Hentihu</h3>
+        <p class="team-degree">Ph.D</p>
+        <p class="team-role">Researcher</p>
+        <p class="team-prodi">Teknik Mesin</p>
+        <p class="team-focus">Manufaktur · Mechanical Engineering</p>
+        <a href="https://scholar.google.com/citations?user=93O4tYYAAAAJ" target="_blank" class="team-scholar">🎓 Google Scholar</a>
+      </div>
+
+      <!-- Rika -->
+      <div class="team-card prodi-mesin">
+        <div class="team-avatar">RD</div>
+        <h3 class="team-name">Rika Dwi Hidayatul Qoryah</h3>
+        <p class="team-degree">S.T., M.T.</p>
+        <p class="team-role">Researcher</p>
+        <p class="team-prodi">Teknik Mesin</p>
+        <p class="team-focus">Mechanical Engineering · Manufacturing Systems</p>
+        <a href="https://scholar.google.com/citations?user=dPD4xwkAAAAJ" target="_blank" class="team-scholar">🎓 Google Scholar</a>
+      </div>
+
+      <!-- Novan -->
+      <div class="team-card prodi-kedokteran">
+        <div class="team-avatar">NK</div>
+        <h3 class="team-name">Novan Krisno Adji</h3>
+        <p class="team-degree">dr., S.Bs</p>
+        <p class="team-role">Researcher</p>
+        <p class="team-prodi">Kedokteran</p>
+        <p class="team-focus">Bedah Saraf · Neurosurgery</p>
+        <a href="https://scholar.google.com/citations?user=qPRnrCIAAAAJ" target="_blank" class="team-scholar">🎓 Google Scholar</a>
+      </div>
+
+      <!-- Mulia -->
+      <div class="team-card prodi-keperawatan">
+        <div class="team-avatar">MH</div>
+        <h3 class="team-name">Mulia Hakam</h3>
+        <p class="team-degree">Ns., S.Kep., M.Kep.</p>
+        <p class="team-role">Researcher</p>
+        <p class="team-prodi">Keperawatan</p>
+        <p class="team-focus">Medical Surgical Nursing · Orthopaedic Nursing</p>
+        <a href="https://scholar.google.com/citations?user=Eg72kt8AAAAJ" target="_blank" class="team-scholar">🎓 Google Scholar</a>
+      </div>
+
+      <!-- Marga -->
+      <div class="team-card prodi-pertanian">
+        <div class="team-avatar">MM</div>
+        <h3 class="team-name">Marga Mandala</h3>
+        <p class="team-degree">Ir., Ph.D</p>
+        <p class="team-role">Researcher</p>
+        <p class="team-prodi">Pertanian</p>
+        <p class="team-focus">Pengelolaan & Konservasi · Agricultural Systems</p>
+        <a href="https://scholar.google.com/citations?user=fMx7pbQAAAAJ" target="_blank" class="team-scholar">🎓 Google Scholar</a>
+      </div>
+
+    </div>
+
+    <!-- Prodi Legend -->
+    <div class="prodi-legend fade-up">
+      <div class="prodi-item"><div class="prodi-dot" style="background:#1E3A5F"></div>Teknik Elektro</div>
+      <div class="prodi-item"><div class="prodi-dot" style="background:#1a4a2e"></div>Informatika</div>
+      <div class="prodi-item"><div class="prodi-dot" style="background:#4a2010"></div>Teknik Mesin</div>
+      <div class="prodi-item"><div class="prodi-dot" style="background:#6b1a1a"></div>Kedokteran</div>
+      <div class="prodi-item"><div class="prodi-dot" style="background:#1a3a5c"></div>Keperawatan</div>
+      <div class="prodi-item"><div class="prodi-dot" style="background:#2e4a1a"></div>Pertanian</div>
     </div>
   </div>
 </section>
@@ -836,9 +823,11 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
 <section id="contact">
   <div class="container">
     <div class="section-header fade-up">
-      <div class="section-eyebrow" style="color:var(--gold-light);">Contact / Kontak</div>
-      <h2 class="section-title section-title-white">Get in Touch</h2>
-      <p class="section-lead section-lead-white">For prospective students, collaborators, or industry partners — we'd love to hear from you.<br><em style="font-style:italic;opacity:0.65;">Untuk calon mahasiswa, kolaborator riset, atau mitra industri.</em></p>
+      <div class="section-eyebrow light">Contact / Kontak</div>
+      <h2 class="section-title white">Get in Touch</h2>
+      <p class="section-lead white">For prospective students, collaborators, or industry partners — we'd love to hear from you.
+        <em>Untuk calon mahasiswa, kolaborator riset, atau mitra industri.</em>
+      </p>
     </div>
     <div class="contact-grid fade-up">
       <div>
@@ -846,14 +835,14 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
           <div class="contact-icon">📍</div>
           <div>
             <p class="contact-label">Location / Lokasi</p>
-            <p class="contact-value">Dept. Teknik Elektro, UNEJ<br>Jl. Kalimantan 37, Jember 68121</p>
+            <p class="contact-value">Gedung CDAST Lantai 7<br>Center for Development of Advanced Science and Technology<br>Universitas Jember, Jember 68121, East Java</p>
           </div>
         </div>
         <div class="contact-info-item">
           <div class="contact-icon">🌐</div>
           <div>
             <p class="contact-label">PI Blog</p>
-            <p class="contact-value"><a href="https://khairul.staff.unej.ac.id">khairul.staff.unej.ac.id</a></p>
+            <p class="contact-value"><a href="https://khairul.staff.unej.ac.id" target="_blank">khairul.staff.unej.ac.id</a></p>
           </div>
         </div>
         <div class="contact-info-item">
@@ -867,7 +856,7 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
           <div class="contact-icon">🎓</div>
           <div>
             <p class="contact-label">Google Scholar</p>
-            <p class="contact-value"><a href="#">View Publication Profile →</a></p>
+            <p class="contact-value"><a href="https://scholar.google.co.id/citations?user=OryG4o4AAAAJ" target="_blank">View Publication Profile →</a></p>
           </div>
         </div>
       </div>
@@ -898,15 +887,14 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">
+  <div>
     <p class="footer-name">ISR Lab — Intelligent Systems & Robotics</p>
-    <p class="footer-sub">Universitas Jember · Dept. Teknik Elektro · Est. 2022</p>
+    <p class="footer-sub">Universitas Jember · Gedung CDAST Lt. 7 · Est. 2022</p>
   </div>
   <div class="footer-links">
-    <a href="https://khairul.staff.unej.ac.id">PI Blog</a>
-    <a href="#">Google Scholar</a>
-    <a href="#">SINTA</a>
-    <a href="#">Garuda</a>
+    <a href="https://khairul.staff.unej.ac.id" target="_blank">PI Blog</a>
+    <a href="https://scholar.google.co.id/citations?user=OryG4o4AAAAJ" target="_blank">Google Scholar</a>
+    <a href="https://sinta.kemdiktisaintek.go.id" target="_blank">SINTA</a>
   </div>
   <p class="footer-copy">© 2025 ISR Lab UNEJ</p>
 </footer>
@@ -914,7 +902,7 @@ footer { background: #070F1E; padding: 2.5rem 3rem; display: flex; align-items: 
 <script>
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.07 });
   document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
   document.querySelectorAll('.pf-btn').forEach(btn => {
