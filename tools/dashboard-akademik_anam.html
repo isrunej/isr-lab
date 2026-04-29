@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Akademik – Prof. Khairul Anam</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Palatino Linotype','Book Antiqua',Palatino,Georgia,serif;
+    background: #f4f1eb; color: #1c1c1c; min-height: 100vh; }
+
+  /* HEADER */
+  .header { background: linear-gradient(135deg,#0f1f3d 0%,#1a3460 100%);
+    color: #fff; padding: 18px 16px 0; }
+  .header-sub { font-size: 9px; letter-spacing: 3px; color: #7a9cc4; margin-bottom: 6px; }
+  .header-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .header-title { font-size: 20px; font-weight: 700; }
+  .header-name { font-size: 10px; color: #7a9cc4; margin-top: 2px; }
+  .btn-add { background: #c9a84c; color: #fff; border: none; border-radius: 7px;
+    padding: 8px 14px; cursor: pointer; font-family: inherit; font-size: 12px;
+    font-weight: 700; white-space: nowrap; }
+  .btn-add:hover { background: #b8973b; }
+
+  /* STATS */
+  .stats-row { display: flex; gap: 5px; margin-top: 14px; overflow-x: auto; padding-bottom: 4px; }
+  .stat-card { background: rgba(255,255,255,0.07); border-radius: 8px; padding: 7px 10px;
+    flex-shrink: 0; text-align: center; cursor: pointer; border: 1px solid transparent;
+    transition: all 0.2s; }
+  .stat-card.active { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.3); }
+  .stat-icon { font-size: 14px; }
+  .stat-num { font-size: 16px; font-weight: 700; }
+  .stat-label { font-size: 8px; color: #7a9cc4; line-height: 1.3; margin-top: 1px; }
+
+  /* URGENT */
+  .urgent { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.25);
+    border-radius: 7px; padding: 7px 10px; margin: 10px 0 0;
+    display: flex; align-items: center; gap: 6px; font-size: 11px; color: #fca5a5; font-weight: 600; }
+
+  /* TABS */
+  .tabs { display: flex; overflow-x: auto; margin-top: 12px; }
+  .tab-btn { background: none; border: none; padding: 10px 12px; font-size: 11px;
+    cursor: pointer; font-family: inherit; white-space: nowrap; color: #7a9cc4;
+    border-bottom: 2px solid transparent; font-weight: 400; transition: all 0.2s; }
+  .tab-btn.active { color: #fff; border-bottom-color: #c9a84c; font-weight: 700; }
+
+  /* SEARCH + PROGRESS */
+  .search-bar { padding: 10px 14px; background: #fff; border-bottom: 1px solid #e5ddd0; }
+  .search-bar input { width: 100%; border: 1.5px solid #ddd4c0; border-radius: 7px;
+    padding: 7px 11px; font-size: 13px; font-family: inherit; background: #faf8f4;
+    outline: none; }
+  .progress-bar { background: #fff; padding: 8px 14px 10px; border-bottom: 1px solid #ede5d8; }
+  .progress-labels { display: flex; justify-content: space-between; font-size: 10px; color: #888; margin-bottom: 4px; }
+  .progress-track { background: #f0ebe0; border-radius: 20px; height: 6px; overflow: hidden; }
+  .progress-fill { background: linear-gradient(90deg,#059669,#34d399); border-radius: 20px;
+    height: 100%; transition: width 0.4s ease; }
+
+  /* LIST */
+  .list { padding: 12px 14px; display: flex; flex-direction: column; gap: 7px; }
+  .empty { text-align: center; color: #bbb; padding: 50px 20px; }
+  .empty-icon { font-size: 28px; margin-bottom: 8px; }
+
+  /* ITEM CARD */
+  .item-card { background: #fff; border-radius: 9px; border: 1px solid #e5ddd0;
+    overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .item-card.urgent-card { border: 1.5px solid #fca5a5; }
+  .item-card.done-card { opacity: 0.6; }
+  .item-header { display: flex; align-items: center; padding: 11px 13px;
+    gap: 9px; cursor: pointer; }
+  .item-icon { font-size: 16px; flex-shrink: 0; }
+  .item-body { flex: 1; min-width: 0; }
+  .item-title { font-weight: 700; font-size: 13px; color: #0f1f3d;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .item-title.done-title { text-decoration: line-through; color: #999; }
+  .item-detail { font-size: 10px; color: #aaa; margin-top: 1px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .item-tags { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; margin-top: 4px; }
+  .tag { font-size: 9px; padding: 2px 6px; border-radius: 20px; font-weight: 700; }
+  .item-arrow { color: #ccc; font-size: 11px; flex-shrink: 0; }
+
+  /* EXPANDED */
+  .item-expanded { border-top: 1px solid #f0e8d8; padding: 12px 13px; background: #fdfaf6; }
+  .next-step { background: #fffbeb; border-left: 3px solid #c9a84c;
+    padding: 7px 10px; border-radius: 5px; margin-bottom: 10px; font-size: 12px; }
+  .next-step-label { font-size: 9px; font-weight: 700; color: #92400e; margin-bottom: 2px; }
+  .notes-text { font-size: 11px; color: #888; margin-bottom: 8px; font-style: italic; }
+  .deadline-text { font-size: 11px; color: #888; margin-bottom: 8px; }
+  .section-label { font-size: 9px; font-weight: 700; color: #999; letter-spacing: 1px; margin-bottom: 4px; }
+  .status-buttons { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 10px; }
+  .status-btn { border-radius: 20px; padding: 3px 9px; font-size: 10px; cursor: pointer;
+    font-family: inherit; border: 1.5px solid #e0e0e0; background: #f5f5f5;
+    color: #aaa; font-weight: 400; transition: all 0.15s; }
+  .status-btn.active-status { font-weight: 700; }
+  .action-buttons { display: flex; gap: 6px; }
+  .btn-edit { background: #0f1f3d; color: #fff; border: none; border-radius: 6px;
+    padding: 6px 12px; cursor: pointer; font-size: 11px; font-family: inherit; }
+  .btn-delete { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca;
+    border-radius: 6px; padding: 6px 12px; cursor: pointer; font-size: 11px; font-family: inherit; }
+
+  /* MODAL */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+    display: flex; align-items: center; justify-content: center; z-index: 200; padding: 14px; }
+  .modal { background: #fff; border-radius: 12px; padding: 20px; width: 100%;
+    max-width: 440px; max-height: 92vh; overflow-y: auto;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25); }
+  .modal h2 { margin: 0 0 14px; font-size: 15px; color: #0f1f3d; }
+  .form-label { font-size: 10px; font-weight: 700; color: #888; margin-bottom: 4px; display: block; }
+  .form-group { margin-bottom: 10px; }
+  .form-input { width: 100%; border: 1.5px solid #ddd; border-radius: 6px;
+    padding: 8px 10px; font-size: 13px; font-family: inherit; outline: none; }
+  .form-input:focus { border-color: #0f1f3d; }
+  .form-row { display: flex; gap: 8px; margin-bottom: 10px; }
+  .form-row > div { flex: 1; }
+  .cat-buttons { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 12px; }
+  .cat-btn { border-radius: 20px; padding: 4px 9px; font-size: 10px; cursor: pointer;
+    font-family: inherit; border: 1.5px solid #e0e0e0; background: #f5f5f5;
+    color: #999; font-weight: 400; transition: all 0.15s; }
+  .cat-btn.active-cat { font-weight: 700; }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+  .btn-cancel { background: #f0f0f0; color: #555; border: none; border-radius: 6px;
+    padding: 8px 14px; cursor: pointer; font-family: inherit; font-size: 12px; }
+  .btn-save { background: #0f1f3d; color: #fff; border: none; border-radius: 6px;
+    padding: 8px 16px; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 700; }
+  select.form-input { background: #fff; }
+  textarea.form-input { resize: vertical; }
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+const CATEGORIES = {
+  article:   { label:"Artikel",          icon:"📝", color:"#2563eb", bg:"#eff6ff" },
+  reviewer:  { label:"Reviewer Jurnal",   icon:"🔍", color:"#7c3aed", bg:"#f5f3ff" },
+  docreview: { label:"Reviewer Dok.",     icon:"📋", color:"#0891b2", bg:"#ecfeff" },
+  research:  { label:"Penelitian",        icon:"🔬", color:"#059669", bg:"#ecfdf5" },
+  abdimas:   { label:"Pengabdian",        icon:"🤝", color:"#d97706", bg:"#fffbeb" },
+};
+
+const STATUS_BY_CAT = {
+  article:   ["drafting","revision","submitted","accepted","published"],
+  reviewer:  ["assigned","reading","reviewing","done"],
+  docreview: ["assigned","reviewing","done"],
+  research:  ["planning","running","analysis","reporting","done"],
+  abdimas:   ["planning","running","reporting","done"],
+};
+
+const STATUS_LABELS = {
+  drafting:"Drafting", revision:"Revisi", submitted:"Submitted",
+  accepted:"Accepted", published:"Published",
+  assigned:"Ditugaskan", reading:"Membaca", reviewing:"Mereview",
+  done:"✅ Selesai", planning:"Perencanaan", running:"Berjalan",
+  analysis:"Analisis", reporting:"Pelaporan",
+};
+
+const STATUS_COLORS = {
+  drafting:  {c:"#dc2626",b:"#fef2f2"},
+  revision:  {c:"#ea580c",b:"#fff7ed"},
+  submitted: {c:"#2563eb",b:"#eff6ff"},
+  accepted:  {c:"#16a34a",b:"#f0fdf4"},
+  published: {c:"#7c3aed",b:"#f5f3ff"},
+  assigned:  {c:"#dc2626",b:"#fef2f2"},
+  reading:   {c:"#ea580c",b:"#fff7ed"},
+  reviewing: {c:"#2563eb",b:"#eff6ff"},
+  done:      {c:"#16a34a",b:"#f0fdf4"},
+  planning:  {c:"#ea580c",b:"#fff7ed"},
+  running:   {c:"#2563eb",b:"#eff6ff"},
+  analysis:  {c:"#7c3aed",b:"#f5f3ff"},
+  reporting: {c:"#d97706",b:"#fffbeb"},
+};
+
+const CAT_NUM_COLORS = {
+  article:"#60a5fa", reviewer:"#a78bfa", docreview:"#38bdf8", research:"#34d399", abdimas:"#fbbf24"
+};
+
+const PRIORITY_LABELS = { high:"🔴 Tinggi", medium:"🟡 Sedang", low:"🟢 Rendah" };
+
+const INITIAL_DATA = [
+  {id:"1",  title:"Artikel S1 Naufal",           detail:"",                                    category:"article",   status:"drafting",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"2",  title:"Artikel S2 Naufal",            detail:"",                                    category:"article",   status:"drafting",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"3",  title:"Artikel S2 Arif Hana",         detail:"",                                    category:"article",   status:"drafting",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"4",  title:"Artikel S2 Aviq",              detail:"",                                    category:"article",   status:"drafting",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"5",  title:"Artikel S2 Zamroni",           detail:"",                                    category:"article",   status:"drafting",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"6",  title:"Artikel S2 Sutikno Suara",     detail:"",                                    category:"article",   status:"drafting",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"7",  title:"Artikel S2 Lintang",           detail:"",                                    category:"article",   status:"drafting",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"8",  title:"Artikel Tiara",                detail:"",                                    category:"article",   status:"drafting",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"9",  title:"Artikel Khodijah",             detail:"",                                    category:"article",   status:"drafting",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"10", title:"Artikel Sindi",                detail:"",                                    category:"article",   status:"drafting",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"11", title:"Artikel Nabil",                detail:"",                                    category:"article",   status:"drafting",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"12", title:"Artikel Lyod",                 detail:"",                                    category:"article",   status:"drafting",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"13", title:"Artikel Daniel Sibaruen",      detail:"",                                    category:"article",   status:"drafting",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"14", title:"Konferensi TENCON",            detail:"IEEE TENCON",                          category:"article",   status:"drafting",  priority:"high",   deadline:"", nextStep:"", notes:""},
+  {id:"15", title:"Konferensi ICEECIT",           detail:"",                                    category:"article",   status:"drafting",  priority:"high",   deadline:"", nextStep:"", notes:""},
+  {id:"16", title:"Konferensi FORTEI",            detail:"",                                    category:"article",   status:"drafting",  priority:"high",   deadline:"", nextStep:"", notes:""},
+  {id:"17", title:"Reviewer ASOC",               detail:"Applied Soft Computing",               category:"reviewer",  status:"assigned",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"18", title:"Reviewer IEEE JBHI",           detail:"Journal of Biomedical & Health Info.", category:"reviewer",  status:"assigned",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"19", title:"Reviewer Neural Computing",    detail:"Neural Computing and Applications",    category:"reviewer",  status:"assigned",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"20", title:"Reviewer Neural Networks",     detail:"Neural Networks (Elsevier)",           category:"reviewer",  status:"assigned",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"21", title:"Review PEKERTI",              detail:"Dok. Pelatihan PEKERTI",               category:"docreview", status:"assigned",  priority:"high",   deadline:"", nextStep:"", notes:""},
+  {id:"22", title:"Review AA",                    detail:"Applied Approach",                     category:"docreview", status:"assigned",  priority:"high",   deadline:"", nextStep:"", notes:""},
+  {id:"23", title:"Penelitian RIIM Molis",        detail:"Riset Inovasi Indonesia Mandiri",      category:"research",  status:"running",   priority:"high",   deadline:"", nextStep:"", notes:""},
+  {id:"24", title:"Penelitian RAIS",              detail:"",                                    category:"research",  status:"running",   priority:"high",   deadline:"", nextStep:"", notes:""},
+  {id:"25", title:"Proposal Sawit",               detail:"Penelitian kelapa sawit",              category:"research",  status:"planning",  priority:"medium", deadline:"", nextStep:"", notes:""},
+  {id:"26", title:"Pengabdian Pelatihan Robot SD",detail:"Pelatihan robotika untuk SD",          category:"abdimas",   status:"planning",  priority:"medium", deadline:"", nextStep:"", notes:""},
+];
+
+// ── STATE ──────────────────────────────────────────────
+let items = [];
+let activeTab = "all";
+let expandedId = null;
+let showForm = false;
+let editId = null;
+let searchVal = "";
+let formData = {};
+
+function loadData() {
+  try {
+    const saved = localStorage.getItem("dashboard_akademik_v1");
+    items = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(INITIAL_DATA));
+  } catch { items = JSON.parse(JSON.stringify(INITIAL_DATA)); }
+}
+
+function saveData() {
+  localStorage.setItem("dashboard_akademik_v1", JSON.stringify(items));
+}
+
+function daysLeft(d) {
+  if (!d) return null;
+  return Math.ceil((new Date(d) - new Date()) / 86400000);
+}
+
+function deadlineChip(deadline) {
+  const d = daysLeft(deadline);
+  if (d === null) return "";
+  const c = d < 0 ? "#dc2626" : d <= 7 ? "#ea580c" : d <= 21 ? "#d97706" : "#16a34a";
+  const t = d < 0 ? `${Math.abs(d)}h lewat` : d === 0 ? "Hari ini!" : `${d} hr lagi`;
+  return `<span class="tag" style="color:${c};background:${c}15;">${t}</span>`;
+}
+
+function formatDate(d) {
+  if (!d) return "";
+  return new Date(d).toLocaleDateString("id-ID", {day:"numeric", month:"long", year:"numeric"});
+}
+
+// ── RENDER ─────────────────────────────────────────────
+function render() {
+  const filtered = items.filter(i => {
+    const mc = activeTab === "all" || i.category === activeTab;
+    const ms = !searchVal || i.title.toLowerCase().includes(searchVal.toLowerCase())
+                          || (i.detail||"").toLowerCase().includes(searchVal.toLowerCase());
+    return mc && ms;
+  }).sort((a,b) => {
+    const pd = {high:0,medium:1,low:2};
+    if (pd[a.priority] !== pd[b.priority]) return pd[a.priority] - pd[b.priority];
+    const da = daysLeft(a.deadline) ?? 9999, db = daysLeft(b.deadline) ?? 9999;
+    return da - db;
+  });
+
+  const counts = {};
+  Object.keys(CATEGORIES).forEach(k => {
+    counts[k] = items.filter(i => i.category===k && i.status!=="done" && i.status!=="published").length;
+  });
+  const done = items.filter(i => i.status==="done"||i.status==="published").length;
+  const urgent = items.filter(i => { const d=daysLeft(i.deadline); return d!==null&&d<=7&&i.status!=="done"&&i.status!=="published"; });
+  const pct = items.length ? Math.round(done/items.length*100) : 0;
+
+  document.getElementById("app").innerHTML = `
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-sub">UNIVERSITAS JEMBER · TEKNIK ELEKTRO</div>
+      <div class="header-row">
+        <div>
+          <div class="header-title">Academic Task Board</div>
+          <div class="header-name">Prof. Ir. Khairul Anam, Ph.D.</div>
+        </div>
+        <button class="btn-add" onclick="openAdd()">+ Tambah</button>
+      </div>
+
+      <div class="stats-row">
+        ${Object.entries(CATEGORIES).map(([k,v]) => `
+          <div class="stat-card ${activeTab===k?'active':''}" onclick="setTab('${k}')">
+            <div class="stat-icon">${v.icon}</div>
+            <div class="stat-num" style="color:${CAT_NUM_COLORS[k]}">${counts[k]||0}</div>
+            <div class="stat-label">${v.label}</div>
+          </div>
+        `).join("")}
+        <div class="stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-num" style="color:#fff">${items.length-done}</div>
+          <div class="stat-label">Aktif</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-num" style="color:#34d399">${done}</div>
+          <div class="stat-label">Selesai</div>
+        </div>
+      </div>
+
+      ${urgent.length ? `
+        <div class="urgent">
+          ⚠️ ${urgent.length} item deadline mendekat:
+          ${urgent.slice(0,2).map(u=>u.title).join(", ")}${urgent.length>2?` +${urgent.length-2}`:""}
+        </div>` : ""}
+
+      <div class="tabs">
+        ${[["all","Semua"],...Object.entries(CATEGORIES).map(([k,v])=>[k,v.label])].map(([k,label])=>`
+          <button class="tab-btn ${activeTab===k?'active':''}" onclick="setTab('${k}')">${label}</button>
+        `).join("")}
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-bar">
+      <input value="${searchVal.replace(/"/g,'&quot;')}" oninput="setSearch(this.value)" placeholder="🔎  Cari...">
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="progress-bar">
+      <div class="progress-labels">
+        <span>Progress keseluruhan</span>
+        <span style="font-weight:700">${done}/${items.length} selesai (${pct}%)</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width:${pct}%"></div>
+      </div>
+    </div>
+
+    <!-- LIST -->
+    <div class="list">
+      ${filtered.length === 0 ? `
+        <div class="empty">
+          <div class="empty-icon">🗂️</div>
+          <div style="font-size:12px">Tidak ada item${searchVal?` untuk "${searchVal}"`:""}.</div>
+        </div>` :
+        filtered.map(item => {
+          const cat = CATEGORIES[item.category];
+          const sc = STATUS_COLORS[item.status] || {c:"#888",b:"#f5f5f5"};
+          const exp = expandedId === item.id;
+          const d = daysLeft(item.deadline);
+          const isUrgent = d!==null && d<=7 && item.status!=="done" && item.status!=="published";
+          const isDone = item.status==="done"||item.status==="published";
+
+          return `
+            <div class="item-card ${isUrgent?'urgent-card':''} ${isDone?'done-card':''}">
+              <div class="item-header" onclick="toggleExpand('${item.id}')">
+                <span class="item-icon">${cat.icon}</span>
+                <div class="item-body">
+                  <div class="item-title ${isDone?'done-title':''}">${item.title}</div>
+                  ${item.detail?`<div class="item-detail">${item.detail}</div>`:""}
+                  <div class="item-tags">
+                    <span class="tag" style="background:${sc.b};color:${sc.c}">${STATUS_LABELS[item.status]}</span>
+                    <span class="tag" style="color:#bbb">${PRIORITY_LABELS[item.priority]}</span>
+                    ${item.deadline?deadlineChip(item.deadline):""}
+                  </div>
+                </div>
+                <span class="item-arrow">${exp?"▲":"▼"}</span>
+              </div>
+
+              ${exp ? `
+                <div class="item-expanded">
+                  ${item.nextStep?`
+                    <div class="next-step">
+                      <div class="next-step-label">LANGKAH BERIKUTNYA</div>
+                      ${item.nextStep}
+                    </div>`:""
+                  }
+                  ${item.notes?`<div class="notes-text">${item.notes}</div>`:""}
+                  ${item.deadline?`<div class="deadline-text">🗓 ${formatDate(item.deadline)}</div>`:""}
+
+                  <div class="section-label">UBAH STATUS</div>
+                  <div class="status-buttons">
+                    ${(STATUS_BY_CAT[item.category]||[]).map(s => {
+                      const scc = STATUS_COLORS[s]||{c:"#888",b:"#f5f5f5"};
+                      const isActive = item.status===s;
+                      return `<button class="status-btn ${isActive?'active-status':''}"
+                        style="${isActive?`background:${scc.b};color:${scc.c};border-color:${scc.c}`:''}"
+                        onclick="changeStatus('${item.id}','${s}')">${STATUS_LABELS[s]}</button>`;
+                    }).join("")}
+                  </div>
+
+                  <div class="action-buttons">
+                    <button class="btn-edit" onclick="openEdit('${item.id}')">✏️ Edit</button>
+                    <button class="btn-delete" onclick="deleteItem('${item.id}')">🗑 Hapus</button>
+                  </div>
+                </div>` : ""}
+            </div>`;
+        }).join("")
+      }
+    </div>
+
+    <!-- MODAL FORM -->
+    ${showForm ? renderModal() : ""}
+  `;
+}
+
+function renderModal() {
+  const statuses = STATUS_BY_CAT[formData.category] || [];
+  return `
+    <div class="modal-overlay" onclick="closeModalIfOverlay(event)">
+      <div class="modal">
+        <h2>${editId ? "Edit Item" : "Tambah Item Baru"}</h2>
+
+        <div class="form-label">KATEGORI</div>
+        <div class="cat-buttons">
+          ${Object.entries(CATEGORIES).map(([k,v]) => {
+            const isActive = formData.category===k;
+            return `<button class="cat-btn ${isActive?'active-cat':''}"
+              style="${isActive?`background:${v.bg};color:${v.color};border-color:${v.color}`:''}"
+              onclick="setFormCat('${k}')">${v.icon} ${v.label}</button>`;
+          }).join("")}
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">JUDUL / NAMA *</label>
+          <input class="form-input" id="f-title" value="${(formData.title||"").replace(/"/g,'&quot;')}"
+            placeholder="Judul / nama kegiatan..." oninput="formData.title=this.value">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">KETERANGAN</label>
+          <input class="form-input" id="f-detail" value="${(formData.detail||"").replace(/"/g,'&quot;')}"
+            placeholder="Nama jurnal, dokumen, mitra, dll..." oninput="formData.detail=this.value">
+        </div>
+
+        <div class="form-row">
+          <div>
+            <label class="form-label">STATUS</label>
+            <select class="form-input" onchange="formData.status=this.value">
+              ${statuses.map(s=>`<option value="${s}" ${formData.status===s?"selected":""}>${STATUS_LABELS[s]}</option>`).join("")}
+            </select>
+          </div>
+          <div>
+            <label class="form-label">PRIORITAS</label>
+            <select class="form-input" onchange="formData.priority=this.value">
+              ${Object.entries(PRIORITY_LABELS).map(([k,v])=>`<option value="${k}" ${formData.priority===k?"selected":""}>${v}</option>`).join("")}
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">DEADLINE</label>
+          <input class="form-input" type="date" value="${formData.deadline||""}" onchange="formData.deadline=this.value">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">LANGKAH BERIKUTNYA</label>
+          <input class="form-input" value="${(formData.nextStep||"").replace(/"/g,'&quot;')}"
+            placeholder="Apa yang perlu dilakukan sekarang?" oninput="formData.nextStep=this.value">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">CATATAN</label>
+          <textarea class="form-input" rows="2" placeholder="Co-author, target IF, catatan khusus..."
+            oninput="formData.notes=this.value">${formData.notes||""}</textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-cancel" onclick="closeForm()">Batal</button>
+          <button class="btn-save" onclick="submitForm()">${editId?"Simpan":"Tambah"}</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── ACTIONS ─────────────────────────────────────────────
+function setTab(t) { activeTab = t; render(); }
+function setSearch(v) { searchVal = v; render(); }
+function toggleExpand(id) { expandedId = expandedId===id ? null : id; render(); }
+
+function openAdd() {
+  const c = (activeTab!=="all" ? activeTab : "article");
+  formData = { title:"", detail:"", category:c, status:STATUS_BY_CAT[c][0], priority:"medium", deadline:"", nextStep:"", notes:"" };
+  editId = null; showForm = true; render();
+}
+
+function openEdit(id) {
+  const item = items.find(i=>i.id===id);
+  if (!item) return;
+  formData = { ...item };
+  editId = id; showForm = true; render();
+}
+
+function closeForm() { showForm = false; editId = null; render(); }
+
+function closeModalIfOverlay(e) {
+  if (e.target.classList.contains("modal-overlay")) closeForm();
+}
+
+function setFormCat(c) {
+  formData.category = c;
+  formData.status = STATUS_BY_CAT[c][0];
+  render();
+}
+
+function submitForm() {
+  if (!(formData.title||"").trim()) { alert("Judul wajib diisi."); return; }
+  const statuses = STATUS_BY_CAT[formData.category];
+  if (!statuses.includes(formData.status)) formData.status = statuses[0];
+  if (editId) {
+    items = items.map(i => i.id===editId ? {...i,...formData} : i);
+  } else {
+    items.push({ ...formData, id: Date.now().toString() });
+  }
+  saveData(); showForm=false; editId=null; render();
+}
+
+function changeStatus(id, status) {
+  items = items.map(i => i.id===id ? {...i, status} : i);
+  saveData(); render();
+}
+
+function deleteItem(id) {
+  if (!confirm("Hapus item ini?")) return;
+  items = items.filter(i => i.id!==id);
+  if (expandedId===id) expandedId=null;
+  saveData(); render();
+}
+
+// ── INIT ────────────────────────────────────────────────
+loadData();
+render();
+</script>
+</body>
+</html>
